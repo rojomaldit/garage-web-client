@@ -4,7 +4,8 @@ import { Grid } from '@mui/material';
 export default function Garage() {
 	return (
 		<Grid className="garage">
-			Pagina Garage
+			Pagina Garage. 
+
 		</Grid>
 	);
 }
