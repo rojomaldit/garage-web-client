@@ -5,6 +5,7 @@ export default function Garage() {
 	return (
 		<Grid className="garage">
 			Pagina Garage
+
 		</Grid>
 	);
 }
