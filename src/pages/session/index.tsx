@@ -2,32 +2,29 @@ import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
+import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 
 export default function Session() {
-
   return (
-    <Grid container className="session">
-      <Grid container item xs={8} className="garage">
-        {/* <img
-          className="img-garage"
-          src="https://www.cronista.com/files/image/142/142670/5ff79b238086b.png"
-          alt=""
-        /> */}
+    <Grid className="login" container>
+      <Grid className="login-menu-img" item xs={8}>
+        <img
+          className="cochera"
+          src="https://www.clarin.com/img/2016/07/06/SyxqkC3K4x_1256x620.jpg"
+        />
       </Grid>
-      <Grid item xs={4}>
-        <Grid container className="menu">
-          
-          <Grid item xs={10}>
-            <Typography color="black" variant="subtitle1">
-              alquileres online
-            </Typography>
-            <Grid>
-              <Typography variant="h6">
-                Administra tus propiedades y alquileres en un solo lugar
-              </Typography>
-              <TextInput label="sadasdas"></TextInput>
+      <Grid className="login-menu" item xs={4}>
+        <Grid className="session">
+          <Grid container>
+            <Grid item xs={4}>
+              <EmojiTransportationIcon
+                color="secondary"
+                sx={{ fontSize: 60 }}
+              />
             </Grid>
-            
+            <Grid item xs={8}>
+              <Typography variant="body1">Cocheras</Typography>
+            </Grid>
           </Grid>
         </Grid>
       </Grid>

@@ -1,17 +1,25 @@
-div.session {
-  min-height: 100%;
-}
-div.garage {
-  background-image: url("https://www.cronista.com/files/image/142/142670/5ff79b238086b.png");
-  background-size:cover;
-  background-repeat: no-repeat;
-  width: 100%;
-  height: 100%;
-}
-div.menu {
-  background-color: #fff;
-  width: 100%;
-  height: 100%;
-  
-}
+div.login {
 
+  div.login-menu-img {
+    background-repeat: no-repeat;
+    height: 100vh;
+    border: 1px;
+    border-style: groove;
+    border-color: rgb(25, 0, 255);
+
+    img.cochera {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+  div.login-menu {
+    border: 1px;
+    border-style: groove;
+    border-color: rgb(25, 0, 255);
+  }
+  div.session {
+    margin:4rem;
+    
+  }
+}
