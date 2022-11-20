@@ -1,11 +1,7 @@
 div.login {
-
   div.login-menu-img {
     background-repeat: no-repeat;
     height: 100vh;
-    border: 1px;
-    border-style: groove;
-    border-color: rgb(25, 0, 255);
 
     img.cochera {
       width: 100%;
@@ -14,12 +10,21 @@ div.login {
     }
   }
   div.login-menu {
-    border: 1px;
-    border-style: groove;
-    border-color: rgb(25, 0, 255);
+    background-color: #fff;
   }
   div.session {
-    margin:4rem;
-    
+    margin: 4rem;
+  }
+  div.subtitle1 {
+    margin-top: 2rem;
+  }
+  div.subtitle2 {
+    margin-top: 3rem;
+  }
+  div.user {
+    margin-top: 2rem;
+  }
+  button.button {
+    margin-top: 2rem;
   }
 }

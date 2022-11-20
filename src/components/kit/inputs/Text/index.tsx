@@ -1,5 +1,6 @@
 import React from "react";
 import { Grid, TextField } from "@mui/material";
+import "./TextInput.scss";
 
 interface Props {
   label: string;
@@ -7,8 +8,11 @@ interface Props {
 export default function TextInput(props: Props) {
   const { label } = props;
   return (
-    
-      <TextField id="outlined-basic" label={label} variant="outlined" />
-    
+    <Grid>
+      <Grid>
+        <TextField id="outlined-basic" label={label} variant="outlined" />
+      </Grid>
+      
+    </Grid>
   );
 }

@@ -1,8 +1,9 @@
 import React from "react";
-import { Grid, Typography } from "@mui/material";
+import { Button, Grid, Typography } from "@mui/material";
 import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
+import InputPassword from "../../components/kit/inputs/Password";
 
 export default function Session() {
   return (
@@ -22,8 +23,20 @@ export default function Session() {
                 sx={{ fontSize: 60 }}
               />
             </Grid>
-            <Grid item xs={8}>
+            <Grid className="subtitle1" item xs={8}>
               <Typography variant="body1">Cocheras</Typography>
+            </Grid>
+            <Grid className="subtitle2">
+              <Typography variant="h6">
+                Administra tus propiedades y alquileres en un solo lugar
+              </Typography>
+            </Grid>
+            <Grid className="user">
+              <TextInput label="¿Cuál es tu usuario?"></TextInput>
+              <InputPassword label="¿y tu contraseña?"></InputPassword>
+            </Grid>
+            <Grid >
+            <Button className="button" variant="outlined">Outlined</Button>
             </Grid>
           </Grid>
         </Grid>
