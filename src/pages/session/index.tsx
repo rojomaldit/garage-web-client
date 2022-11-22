@@ -11,11 +11,7 @@ export default function Session() {
   return (
     <Grid className="login" container>
       <Grid className="login-menu-img" item xs={8}>
-        <img
-          alt=""
-          className="cochera"
-          src="../images/cochera.jpg"
-        />
+        <img alt="" className="cochera" src="../images/cochera.jpg" />
       </Grid>
       <Grid className="login-menu" item xs={4}>
         <Grid className="session">
@@ -41,11 +37,19 @@ export default function Session() {
             <ButtonSession></ButtonSession>
           </Grid>
           <Grid className="change-password">
-            <ButtonText title="Cambia tu contraseña"></ButtonText>
+            <ButtonText subtitle="" title="Cambia tu contraseña"></ButtonText>
           </Grid>
         </Grid>
-        <Grid className="creators">
-          <ButtonText title="Creado por Gradac Marcos y Lucas Caballero"></ButtonText>
+        <Grid container className="creators" >
+          <Grid className="created"  item xs={3}>
+            <Typography variant="body2"> Creado por: </Typography>
+          </Grid>
+          <Grid item xs={4.5}>
+            <ButtonText subtitle="https://github.com/GradacMarcos"  title=" Gradac Marcos "></ButtonText>
+          </Grid>
+          <Grid item xs={4.5}>
+            <ButtonText subtitle="https://github.com/rojomaldit" title="Lucas Caballero"></ButtonText>
+          </Grid>
         </Grid>
       </Grid>
     </Grid>
