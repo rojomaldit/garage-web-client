@@ -1,7 +1,9 @@
 div.login {
+  
   div.login-menu-img {
     background-repeat: no-repeat;
     height: 100vh;
+    display: block;
 
     img.cochera {
       width: 100%;
@@ -13,11 +15,9 @@ div.login {
     background-color: #fff;
   }
   div.session {
-    margin: 4rem;
+    margin: 5rem;
   }
-  div.subtitle1 {
-    margin-top: 2rem;
-  }
+
   div.subtitle2 {
     margin-top: 3rem;
   }
@@ -26,5 +26,11 @@ div.login {
   }
   button.button {
     margin-top: 2rem;
+  }
+  div.change-password {
+    margin-top: 2rem;
+  }
+  div.creators {
+    margin-top: 10rem;
   }
 }

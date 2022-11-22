@@ -1,17 +1,20 @@
 import React from "react";
-import { Button, Grid, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
+import ButtonSession from "../../components/kit/inputs/Buttons/ButtonSession";
+import ButtonText from "../../components/kit/inputs/Buttons/ButtonText";
 
 export default function Session() {
   return (
     <Grid className="login" container>
       <Grid className="login-menu-img" item xs={8}>
         <img
+          alt=""
           className="cochera"
-          src="https://www.clarin.com/img/2016/07/06/SyxqkC3K4x_1256x620.jpg"
+          src="../images/cochera.jpg"
         />
       </Grid>
       <Grid className="login-menu" item xs={4}>
@@ -24,21 +27,25 @@ export default function Session() {
               />
             </Grid>
             <Grid className="subtitle1" item xs={8}>
-              <Typography variant="body1">Cocheras</Typography>
-            </Grid>
-            <Grid className="subtitle2">
-              <Typography variant="h6">
-                Administra tus propiedades y alquileres en un solo lugar
+              <Typography variant="body1">
+                Bienvenido a nuestro sistema de gestion de cocheras
               </Typography>
             </Grid>
+
             <Grid className="user">
               <TextInput label="¿Cuál es tu usuario?"></TextInput>
               <InputPassword label="¿y tu contraseña?"></InputPassword>
             </Grid>
-            <Grid >
-            <Button className="button" variant="outlined">Outlined</Button>
-            </Grid>
           </Grid>
+          <Grid>
+            <ButtonSession></ButtonSession>
+          </Grid>
+          <Grid className="change-password">
+            <ButtonText title="Cambia tu contraseña"></ButtonText>
+          </Grid>
+        </Grid>
+        <Grid className="creators">
+          <ButtonText title="Creado por Gradac Marcos y Lucas Caballero"></ButtonText>
         </Grid>
       </Grid>
     </Grid>
