@@ -4,8 +4,8 @@ import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
-import ButtonSession from "../../components/kit/inputs/Buttons/ButtonSession";
-import ButtonText from "../../components/kit/inputs/Buttons/ButtonText";
+import ButtonSession from "../../components/kit/Buttons/ButtonSession";
+import ButtonText from "../../components/kit/Buttons/ButtonText";
 
 export default function Session() {
   return (
