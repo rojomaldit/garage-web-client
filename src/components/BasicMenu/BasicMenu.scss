@@ -1,0 +1,30 @@
+div.BasicMenu {
+  min-height: 100vh;
+  border-width: 0px 1px 0px 0px;
+  border-color: gray;
+  border-style: solid;
+
+  background-color: white;
+  div.logo {
+    height: 120px;
+    text-align: center;
+    padding-top: 2.5rem;
+    img.img-logo {
+      width: 90%;
+      height: auto;
+    }
+  }
+  div.menu-item a {
+    border-top: 1px;
+    border-style: groove;
+    border-color: #a543e1;
+    background-color: white;
+    color: #10151f;
+    width: 100%;
+  }
+  div.menu-item:last-child a {
+    border-bottom: 1px;
+    border-style: groove;
+    border-color: #a543e1;
+  }
+}
