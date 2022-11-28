@@ -6,8 +6,25 @@ import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
 import ButtonSession from "../../components/kit/Buttons/ButtonSession";
 import ButtonText from "../../components/kit/Buttons/ButtonText";
+import { logIn } from "../../services/session";
 
-export default function Session() {
+interface Props {
+  setToken: React.Dispatch<React.SetStateAction<string>>;
+}
+
+export default function Session(props: Props) {
+
+  const [user, setUser] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
+  const handleLogin = () => {
+    (async () => {
+      const token = await logIn(user, password);
+      props.setToken(token.access_token);
+      localStorage.setItem('access_token', JSON.stringify(token.access_token));
+    })();
+  }
+
   return (
     <Grid className="login" container>
       <Grid className="login-menu-img" item xs={8}>
@@ -29,12 +46,12 @@ export default function Session() {
             </Grid>
 
             <Grid className="user">
-              <TextInput label="¿Cuál es tu usuario?"></TextInput>
-              <InputPassword label="¿y tu contraseña?"></InputPassword>
+              <TextInput onChange={setUser} label="¿Cuál es tu usuario?" />
+              <InputPassword onChange={setPassword} label="¿Y tu contraseña?" />
             </Grid>
           </Grid>
           <Grid>
-            <ButtonSession></ButtonSession>
+            <ButtonSession title="Ingresar" onClick={handleLogin} />
           </Grid>
           <Grid className="change-password">
             <ButtonText subtitle="" title="Cambia tu contraseña"></ButtonText>

@@ -1,11 +1,22 @@
 import { Button, Grid } from "@mui/material";
 import "./ButtonSession.scss";
-import React from "react";
 
-export default function ButtonSession() {
+interface Props {
+  title: string;
+  onClick: () => void;
+}
+
+export default function ButtonSession(props: Props) {
   return (
-    <Grid className="button" >
-     <Button variant="outlined" className="button-session" color="secondary">Ingresar</Button>
+    <Grid className="button">
+      <Button
+        onClick={props.onClick}
+        variant="outlined"
+        className="button-session"
+        color="secondary"
+      >
+        {props.title}
+      </Button>
     </Grid>
   );
 }
