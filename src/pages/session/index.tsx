@@ -4,7 +4,7 @@ import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
-import ButtonSession from "../../components/kit/Buttons/ButtonSession";
+import SimpleButton from "../../components/kit/Buttons/SimpleButton";
 import ButtonText from "../../components/kit/Buttons/ButtonText";
 
 export default function Session() {
@@ -27,28 +27,37 @@ export default function Session() {
                 Bienvenido a nuestro sistema de gestion de cocheras
               </Typography>
             </Grid>
-
-            <Grid className="user">
-              <TextInput label="¿Cuál es tu usuario?"></TextInput>
-              <InputPassword label="¿y tu contraseña?"></InputPassword>
+            <Grid container>
+              <Grid item xs={12} className="user">
+                <TextInput label="¿Cuál es tu usuario?" />
+              </Grid>
+              <Grid item xs={12}>
+                <InputPassword label="¿y tu contraseña?" />
+              </Grid>
             </Grid>
           </Grid>
           <Grid>
-            <ButtonSession></ButtonSession>
+            <SimpleButton />
           </Grid>
           <Grid className="change-password">
-            <ButtonText subtitle="" title="Cambia tu contraseña"></ButtonText>
+            <ButtonText subtitle="" title="Cambia tu contraseña" />
           </Grid>
         </Grid>
-        <Grid container className="creators" >
-          <Grid className="created"  item xs={3}>
+        <Grid container className="creators">
+          <Grid className="created" item xs={3}>
             <Typography variant="body2"> Creado por: </Typography>
           </Grid>
           <Grid item xs={4.5}>
-            <ButtonText subtitle="https://github.com/GradacMarcos"  title=" Gradac Marcos "></ButtonText>
+            <ButtonText
+              subtitle="https://github.com/GradacMarcos"
+              title=" Gradac Marcos "
+            />
           </Grid>
           <Grid item xs={4.5}>
-            <ButtonText subtitle="https://github.com/rojomaldit" title="Lucas Caballero"></ButtonText>
+            <ButtonText
+              subtitle="https://github.com/rojomaldit"
+              title="Lucas Caballero"
+            />
           </Grid>
         </Grid>
       </Grid>

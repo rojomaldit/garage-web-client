@@ -1,5 +1,4 @@
 div.login {
-  
   div.login-menu-img {
     background-repeat: no-repeat;
     height: 100vh;
@@ -13,6 +12,7 @@ div.login {
   }
   div.login-menu {
     background-color: #fff;
+    text-align: center;
   }
   div.session {
     margin: 5rem;
@@ -31,7 +31,6 @@ div.login {
     margin-top: 2rem;
   }
   div.creators {
-    text-align: center;
     margin-top: 10rem;
     div.created {
       margin-top: 5px;
