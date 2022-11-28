@@ -1,0 +1,40 @@
+div.login {
+  
+  div.login-menu-img {
+    background-repeat: no-repeat;
+    height: 100vh;
+    display: block;
+
+    img.cochera {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+  }
+  div.login-menu {
+    background-color: #fff;
+  }
+  div.session {
+    margin: 5rem;
+  }
+
+  div.subtitle2 {
+    margin-top: 3rem;
+  }
+  div.user {
+    margin-top: 2rem;
+  }
+  button.button {
+    margin-top: 2rem;
+  }
+  div.change-password {
+    margin-top: 2rem;
+  }
+  div.creators {
+    text-align: center;
+    margin-top: 10rem;
+    div.created {
+      margin-top: 5px;
+    }
+  }
+}
