@@ -13,7 +13,6 @@ interface Props {
 }
 
 export default function Session(props: Props) {
-
   const [user, setUser] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
@@ -21,9 +20,9 @@ export default function Session(props: Props) {
     (async () => {
       const token = await logIn(user, password);
       props.setToken(token.access_token);
-      localStorage.setItem('access_token', JSON.stringify(token.access_token));
+      localStorage.setItem("access_token", JSON.stringify(token.access_token));
     })();
-  }
+  };
 
   return (
     <Grid className="login" container>
@@ -49,12 +48,15 @@ export default function Session(props: Props) {
                 <TextInput onChange={setUser} label="¿Cuál es tu usuario?" />
               </Grid>
               <Grid item xs={12}>
-                <InputPassword onChange={setPassword} label="¿Y tu contraseña?"/>
+                <InputPassword
+                  onChange={setPassword}
+                  label="¿Y tu contraseña?"
+                />
               </Grid>
             </Grid>
           </Grid>
           <Grid>
-            <SimpleButton  title="Ingresar" onClick={handleLogin}/>
+            <SimpleButton title="Ingresar" onClick={handleLogin} />
           </Grid>
           <Grid className="change-password">
             <ButtonText subtitle="" title="Cambia tu contraseña" />
@@ -64,18 +66,16 @@ export default function Session(props: Props) {
           <Grid className="created" item xs={3}>
             <Typography variant="body2"> Creado por: </Typography>
           </Grid>
-          <Grid item xs={4.5}>
-            <ButtonText
-              subtitle="https://github.com/GradacMarcos"
-              title=" Gradac Marcos "
-            />
-          </Grid>
-          <Grid item xs={4.5}>
-            <ButtonText
-              subtitle="https://github.com/rojomaldit"
-              title="Lucas Caballero"
-            />
-          </Grid>
+
+          <ButtonText
+            subtitle="https://github.com/GradacMarcos"
+            title=" Gradac Marcos "
+          />
+
+          <ButtonText
+            subtitle="https://github.com/rojomaldit"
+            title="Lucas Caballero"
+          />
         </Grid>
       </Grid>
     </Grid>

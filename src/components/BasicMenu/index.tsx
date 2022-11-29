@@ -11,7 +11,7 @@ export default function BasicMenu(props: Props) {
   return (
     <Grid container>
       <Grid className="BasicMenu" item xs={2}>
-        <Grid className="logo">
+        <Grid item xs={12} className="logo">
           <img className="img-logo" src="images/logo.png" alt="" />
         </Grid>
         <Grid className="menu-item">
