@@ -1,6 +1,7 @@
 import { Grid, Typography } from "@mui/material";
 import ButtonText from "../../components/kit/Buttons/ButtonText";
 import "./Dashboard.scss";
+import DashboardGraphic from "./Graphic";
 export default function Dashboard() {
   return (
     <Grid className="dashboard" container>
@@ -8,7 +9,7 @@ export default function Dashboard() {
         <Typography variant="h3">Inicio</Typography>
       </Grid>
       <Grid className="graphic">
-        <Typography variant="h3">ACA VA EL GRAFICO</Typography>
+        <DashboardGraphic></DashboardGraphic>
       </Grid>
       <Grid className="data-garage" container>
         <Grid item xs={4}>
