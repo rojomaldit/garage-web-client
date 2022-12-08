@@ -9,7 +9,7 @@ export default function Dashboard() {
         <Typography variant="h3">Inicio</Typography>
       </Grid>
       <Grid className="graphic">
-        <DashboardGraphic></DashboardGraphic>
+       <DashboardGraphic></DashboardGraphic>
       </Grid>
       <Grid className="data-garage" container>
         <Grid item xs={4}>
