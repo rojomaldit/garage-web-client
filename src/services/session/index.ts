@@ -1,7 +1,5 @@
 import axios from 'axios';
-
-// get base from congig
-const base = "http://localhost:3000";
+import { base } from '../VARIABLES';
 
 export async function logIn(username: string, password: string) { 
   try {

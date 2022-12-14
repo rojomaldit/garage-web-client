@@ -8,7 +8,7 @@ import Session from "./session";
 import Vehicles from "./vehicles";
 
 export default function Garage() {
-  const [token, setToken] = useState<string>("asdas");
+  const [token, setToken] = useState<string>("");
 
   useEffect(() => {
     const accessToken = localStorage.getItem('access_token');

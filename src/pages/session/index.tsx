@@ -20,7 +20,7 @@ export default function Session(props: Props) {
     (async () => {
       const token = await logIn(user, password);
       props.setToken(token.access_token);
-      localStorage.setItem("access_token", JSON.stringify(token.access_token));
+      localStorage.setItem("access_token", (token.access_token));
     })();
   };
 
