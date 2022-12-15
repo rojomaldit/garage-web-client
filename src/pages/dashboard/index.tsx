@@ -1,19 +1,22 @@
 import { Grid, Typography } from "@mui/material";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import ButtonText from "../../components/kit/Buttons/ButtonText";
-import { getAllPlaceGarage } from "../../services/dashboard";
+import { getAllPlaceGarage, PlaceGarage } from "../../services/dashboard";
 import "./Dashboard.scss";
 import DashboardGraphic from "./Graphic";
 
 export default function Dashboard() {
+  const [placeGarageData, setPlaceGarageData] = useState<PlaceGarage[]>([]);
   const handlePlaceGarage = () => {
     (async () => {
       const data = await getAllPlaceGarage();
-      console.log(data);
+      setPlaceGarageData(data);
     })();
   };
-
+  console.log(placeGarageData);
   useEffect(handlePlaceGarage, []);
+
+  
 
   return (
     <Grid className="dashboard" container>
@@ -29,12 +32,12 @@ export default function Dashboard() {
             subtitle="http://localhost:3000/garages"
             title="Cocheras Disponibles"
           />
-          <Typography>12</Typography>
+          <Typography>{placeGarageData.filter(e => e.isAvailable).length}</Typography>
         </Grid>
         <Grid className="occupied-garages" item xs={8}>
-          <Typography color="secondary">cocheras ocupadas</Typography>
+          <Typography color="secondary">COCHERAS OCUPADAS</Typography>
           <Grid>
-            <Typography>30</Typography>
+            <Typography>{placeGarageData.filter(e => !e.isAvailable).length}</Typography>
           </Grid>
         </Grid>
       </Grid>
