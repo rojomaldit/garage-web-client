@@ -23,6 +23,7 @@ export async function getAllPlaceGarage() {
   }
 }
 
+
 export async function getTotalToCollect() {
   try {
     const headers = {

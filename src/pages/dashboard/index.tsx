@@ -8,7 +8,7 @@ import {
   TotalToCollect,
 } from "../../services/dashboard";
 import "./Dashboard.scss";
-import DashboardGraphic from "./Graphic";
+import DashboardGraphic from "../../components/Dashboard/Graphic";
 
 export default function Dashboard() {
   const [placeGarageData, setPlaceGarageData] = useState<PlaceGarage[]>([]);
@@ -18,7 +18,6 @@ export default function Dashboard() {
       setPlaceGarageData(data);
     })();
   };
-  console.log(placeGarageData);
   
 
   const [totalToCollectData, setTotalToCollectData] =
@@ -46,7 +45,7 @@ export default function Dashboard() {
       <Grid className="data-garage" container>
         <Grid item xs={4}>
           <ButtonText
-            subtitle="http://localhost:3000/garages"
+            subtitle="/garages"
             title="Cocheras Disponibles"
           />
           <Typography>
