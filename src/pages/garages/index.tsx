@@ -25,7 +25,7 @@ export default function Garages() {
           rows={garageData.map((garage) => {
             return [
               garage.placeId,
-              garage.createdAt,
+              garage.createdAt.split('T')[0],
               garage.isAvailable ? "Disponible" : "Ocupado",
             ];
           })}
