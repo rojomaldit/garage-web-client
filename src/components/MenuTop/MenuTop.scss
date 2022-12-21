@@ -1,0 +1,22 @@
+div.menu-top {
+  background-color: white;
+  height: 4rem;
+  width: 100%;
+  border-bottom: 0.5px;
+  border-bottom-style: solid;
+  border-bottom-color: #a543e1;
+  div.menu-title {
+    padding-left: 5rem;
+    margin-top: 1rem;
+    width: 100%;
+    font-weight: bold;
+    color: black;
+  }
+  div.button {
+    margin-top: 1rem;
+    padding-right: 5rem;
+    font-weight: bold;
+    color: black;
+    text-align: end;
+  }
+}

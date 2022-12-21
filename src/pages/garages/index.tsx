@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import BasicTable from "../../components/kit/BasicTable";
+import MenuTop from "../../components/MenuTop";
 import { Garage, getAllGarage } from "../../services/garages";
 import "./Garages.scss";
 
@@ -17,7 +18,7 @@ export default function Garages() {
   return (
     <Grid>
       <Grid>
-        <Typography variant="h3">Garages</Typography>
+        <MenuTop title="Cocheras"></MenuTop>
       </Grid>
       <Grid>
         <BasicTable
@@ -25,7 +26,7 @@ export default function Garages() {
           rows={garageData.map((garage) => {
             return [
               garage.placeId,
-              garage.createdAt.split('T')[0],
+              garage.createdAt.split("T")[0],
               garage.isAvailable ? "Disponible" : "Ocupado",
             ];
           })}
