@@ -5,8 +5,8 @@ import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
 import SimpleButton from "../../components/kit/Buttons/SimpleButton";
-import ButtonText from "../../components/kit/Buttons/ButtonText";
 import { logIn } from "../../services/session";
+import ButtonLevel from "../../components/kit/Buttons";
 
 interface Props {
   setToken: React.Dispatch<React.SetStateAction<string>>;
@@ -20,7 +20,7 @@ export default function Session(props: Props) {
     (async () => {
       const token = await logIn(user, password);
       props.setToken(token.access_token);
-      localStorage.setItem("access_token", (token.access_token));
+      localStorage.setItem("access_token", token.access_token);
     })();
   };
 
@@ -59,7 +59,7 @@ export default function Session(props: Props) {
             <SimpleButton title="Ingresar" onClick={handleLogin} />
           </Grid>
           <Grid className="change-password">
-            <ButtonText subtitle="" title="Cambia tu contraseña" />
+            <ButtonLevel variant="text" title="Cambia tu contraseña" />
           </Grid>
         </Grid>
         <Grid container className="creators">
@@ -67,13 +67,15 @@ export default function Session(props: Props) {
             <Typography variant="body2"> Creado por: </Typography>
           </Grid>
 
-          <ButtonText
-            subtitle="https://github.com/GradacMarcos"
+          <ButtonLevel
+            variant="text"
+            href= "https://github.com/GradacMarcos"
             title=" Gradac Marcos "
           />
 
-          <ButtonText
-            subtitle="https://github.com/rojomaldit"
+          <ButtonLevel
+            href="https://github.com/rojomaldit"
+            variant="text"
             title="Lucas Caballero"
           />
         </Grid>

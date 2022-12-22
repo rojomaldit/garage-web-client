@@ -15,7 +15,6 @@ interface Props {
 }
 
 export default function BasicTable(props: Props) {
-  console.log(props);
   return (
     <Grid className="table">
       <TableContainer component={Paper}>

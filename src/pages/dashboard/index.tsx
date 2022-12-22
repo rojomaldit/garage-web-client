@@ -1,6 +1,5 @@
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import ButtonText from "../../components/kit/Buttons/ButtonText";
 import {
   getAllPlaceGarage,
   getTotalToCollect,
@@ -9,6 +8,7 @@ import {
 } from "../../services/dashboard";
 import "./Dashboard.scss";
 import DashboardGraphic from "../../components/Dashboard/Graphic";
+import ButtonLevel from "../../components/kit/Buttons";
 
 export default function Dashboard() {
   const [placeGarageData, setPlaceGarageData] = useState<PlaceGarage[]>([]);
@@ -18,7 +18,6 @@ export default function Dashboard() {
       setPlaceGarageData(data);
     })();
   };
-  
 
   const [totalToCollectData, setTotalToCollectData] =
     useState<TotalToCollect>();
@@ -30,8 +29,8 @@ export default function Dashboard() {
   };
 
   useEffect(() => {
-    handlePlaceGarage()
-    handleTotalCollect()
+    handlePlaceGarage();
+    handleTotalCollect();
   }, []);
 
   return (
@@ -44,8 +43,9 @@ export default function Dashboard() {
       </Grid>
       <Grid className="data-garage" container>
         <Grid item xs={4}>
-          <ButtonText
-            subtitle="/garages"
+          <ButtonLevel
+            variant="text"
+            href="/garages"
             title="Cocheras Disponibles"
           />
           <Typography>
@@ -53,7 +53,11 @@ export default function Dashboard() {
           </Typography>
         </Grid>
         <Grid className="occupied-garages" item xs={8}>
-          <Typography color="secondary">COCHERAS OCUPADAS</Typography>
+        <ButtonLevel
+            variant="text"
+            href="/garages"
+            title="Cocheras Ocupadas"
+          />
           <Grid>
             <Typography>
               {placeGarageData.filter((e) => !e.isAvailable).length}
@@ -63,9 +67,11 @@ export default function Dashboard() {
       </Grid>
       <Grid container className="pending-collection">
         <Grid item xs={4}>
-          <ButtonText subtitle="/vehicle" title="Pendiente de Cobro" />
+          <ButtonLevel variant="text"  href="/vehicle" title="Pendiente de Cobro" />
           <Typography variant="h4">
-            {Math.floor(!totalToCollectData ? 0 : totalToCollectData.totalToCollect)}
+            {Math.floor(
+              !totalToCollectData ? 0 : totalToCollectData.totalToCollect
+            )}
           </Typography>
         </Grid>
       </Grid>
