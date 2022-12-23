@@ -1,5 +1,6 @@
-import { Grid } from "@mui/material";
+import {  Grid } from "@mui/material";
 import { useEffect, useState } from "react";
+import Drawer from "../../components/Drawer";
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
 import { Garage, getAllGarage } from "../../services/garages";
@@ -18,10 +19,11 @@ export default function Garages() {
   return (
     <Grid className="garage">
       <Grid className="button-garage">
-        <MenuTop title="Cocheras"></MenuTop>
-      </Grid>
-      <Grid>
-        
+        <MenuTop button={{
+          title: "Crear Nuevo",
+          onClick: () => console.log(),
+        }} title="Cocheras"></MenuTop>
+
       </Grid>
       <Grid>
         <BasicTable

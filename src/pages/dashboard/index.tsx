@@ -72,7 +72,8 @@ export default function Dashboard() {
             href="/vehicle"
             title="Pendiente de Cobro"
           />
-          <Typography variant="h4">
+          <Typography color={"green"} variant="h4">
+            💲
             {Math.floor(
               !totalToCollectData ? 0 : totalToCollectData.totalToCollect
             )}

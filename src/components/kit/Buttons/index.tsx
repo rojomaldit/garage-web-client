@@ -35,7 +35,7 @@ export default function ButtonLevel(props: Props) {
           {title}
         </Button>
       )}
-      {variant == "outlined" && (
+      {variant === "outlined" && (
         <Button
           onClick={onClick}
           href={!href ? "" : href}
@@ -46,7 +46,7 @@ export default function ButtonLevel(props: Props) {
           {title}
         </Button>
       )}
-      {variant == "contained" && (
+      {variant === "contained" && (
         <Button
           onClick={onClick}
           href={!href ? "" : href}

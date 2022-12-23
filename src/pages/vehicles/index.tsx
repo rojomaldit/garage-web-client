@@ -1,6 +1,7 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import BasicTable from "../../components/kit/BasicTable";
+import MenuTop from "../../components/MenuTop";
 import { getAllVehicle, Vehicle } from "../../services/vehicle";
 
 export default function Vehicles() {
@@ -16,7 +17,8 @@ export default function Vehicles() {
   return (
     <Grid>
       <Grid>
-        <Typography variant="h1">vehicles</Typography>
+        <MenuTop button={{onClick: () => console.log(),
+          title: "Crear Nuevo"}} title="vehiculos"></MenuTop>
       </Grid>
       <Grid>
         <BasicTable
