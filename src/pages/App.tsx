@@ -1,6 +1,8 @@
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route, NavigationType } from "react-router-dom";
+import { redirect } from "react-router-dom";
+
 import BasicMenu from "../components/BasicMenu";
 import Dashboard from "./dashboard";
 import Garages from "./garages";
@@ -8,7 +10,10 @@ import Session from "./session";
 import Vehicles from "./vehicles";
 
 export default function Garage() {
-  const [token, setToken] = useState<string>(localStorage.getItem("access_token") || "");
+
+  const [token, setToken] = useState<string>(
+    localStorage.getItem("access_token") || ""
+  );
 
   useEffect(() => {
     const expiration = localStorage.getItem("token_expiration");
@@ -34,10 +39,12 @@ export default function Garage() {
   }
 
   const applyMenu = (e: JSX.Element) => <BasicMenu>{e}</BasicMenu>;
+
   return (
     <Grid className="garage">
       <Router>
         <Routes>
+          <Route path="/" element={applyMenu(<Dashboard />)} />
           <Route path="/dashboard" element={applyMenu(<Dashboard />)} />
           <Route path="/vehicles" element={applyMenu(<Vehicles />)} />
           <Route path="/garages" element={applyMenu(<Garages />)} />
