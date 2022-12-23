@@ -8,17 +8,29 @@ import Session from "./session";
 import Vehicles from "./vehicles";
 
 export default function Garage() {
-  const [token, setToken] = useState<string>("");
+  const [token, setToken] = useState<string>(localStorage.getItem("access_token") || "");
 
   useEffect(() => {
-    const accessToken = localStorage.getItem('access_token');
-    if(accessToken) {
+    const expiration = localStorage.getItem("token_expiration");
+
+    // validate expiration
+    if (expiration) {
+      const expirationDate = new Date(expiration);
+      if (expirationDate < new Date()) {
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("token_expiration");
+        setToken("");
+      }
+    }
+
+    const accessToken = localStorage.getItem("access_token");
+    if (accessToken) {
       setToken(accessToken);
     }
   }, []);
 
-  if(!token) {
-    return <Session setToken={setToken} />
+  if (!token) {
+    return <Session setToken={setToken} />;
   }
 
   const applyMenu = (e: JSX.Element) => <BasicMenu>{e}</BasicMenu>;

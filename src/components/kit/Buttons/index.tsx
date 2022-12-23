@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
 
 interface Props {
@@ -12,7 +12,7 @@ export default function ButtonLevel(props: Props) {
   const { variant = "filled", title, onClick, href } = props;
   return (
     <Grid className="button-level">
-      {variant == "filled" && (
+      {variant === "filled" && (
         <Button
           target="_blank"
           href={!href ? "" : href}
@@ -23,7 +23,7 @@ export default function ButtonLevel(props: Props) {
           {title}
         </Button>
       )}
-      {variant == "text" && (
+      {variant === "text" && (
         <Button
           href={!href ? "" : href}
           target="_blank"

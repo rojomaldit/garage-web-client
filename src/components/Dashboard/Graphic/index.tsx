@@ -2,8 +2,6 @@ import { Grid } from "@mui/material";
 import CanvasJSReact from "./canvasjs.react";
 import "./DashboardGraphic.scss";
 
-
-var CanvasJS = CanvasJSReact.CanvasJS;
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
 export default function DashboardGraphic() {
   const options = {

@@ -19,8 +19,18 @@ export default function Session(props: Props) {
   const handleLogin = () => {
     (async () => {
       const token = await logIn(user, password);
+      
+      if (!token) {
+        return;
+      }
+      
       props.setToken(token.access_token);
       localStorage.setItem("access_token", token.access_token);
+
+      // 8 hours to expirate token
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 8);
+      localStorage.setItem("token_expiration", expiration.toString());
     })();
   };
 
