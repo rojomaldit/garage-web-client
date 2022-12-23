@@ -4,7 +4,6 @@ import "./Session.scss";
 import TextInput from "../../components/kit/inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
 import InputPassword from "../../components/kit/inputs/Password";
-import SimpleButton from "../../components/kit/Buttons/SimpleButton";
 import { logIn } from "../../services/session";
 import ButtonLevel from "../../components/kit/Buttons";
 
@@ -65,8 +64,8 @@ export default function Session(props: Props) {
               </Grid>
             </Grid>
           </Grid>
-          <Grid>
-            <SimpleButton title="Ingresar" onClick={handleLogin} />
+          <Grid className="">
+            <ButtonLevel variant="outlined" title="Ingresar" onClick={handleLogin} />
           </Grid>
           <Grid className="change-password">
             <ButtonLevel variant="text" title="Cambia tu contraseña" />
