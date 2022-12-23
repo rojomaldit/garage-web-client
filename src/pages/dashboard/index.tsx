@@ -39,7 +39,7 @@ export default function Dashboard() {
         <Typography variant="h3">Inicio</Typography>
       </Grid>
       <Grid className="graphic">
-        <DashboardGraphic></DashboardGraphic>
+        <DashboardGraphic />
       </Grid>
       <Grid className="data-garage" container>
         <Grid item xs={4}>
@@ -53,7 +53,7 @@ export default function Dashboard() {
           </Typography>
         </Grid>
         <Grid className="occupied-garages" item xs={8}>
-        <ButtonLevel
+          <ButtonLevel
             variant="text"
             href="/garages"
             title="Cocheras Ocupadas"
@@ -67,7 +67,11 @@ export default function Dashboard() {
       </Grid>
       <Grid container className="pending-collection">
         <Grid item xs={4}>
-          <ButtonLevel variant="text"  href="/vehicle" title="Pendiente de Cobro" />
+          <ButtonLevel
+            variant="text"
+            href="/vehicle"
+            title="Pendiente de Cobro"
+          />
           <Typography variant="h4">
             {Math.floor(
               !totalToCollectData ? 0 : totalToCollectData.totalToCollect

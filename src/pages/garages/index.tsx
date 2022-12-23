@@ -16,9 +16,12 @@ export default function Garages() {
   useEffect(handleVehiclesData, []);
 
   return (
-    <Grid>
-      <Grid>
+    <Grid className="garage">
+      <Grid className="button-garage">
         <MenuTop title="Cocheras"></MenuTop>
+      </Grid>
+      <Grid>
+        
       </Grid>
       <Grid>
         <BasicTable
