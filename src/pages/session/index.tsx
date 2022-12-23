@@ -65,7 +65,7 @@ export default function Session(props: Props) {
             </Grid>
           </Grid>
           <Grid className="">
-            <ButtonLevel variant="outlined" title="Ingresar" onClick={handleLogin} href="/dashboard" />
+            <ButtonLevel variant="outlined" title="Ingresar" onClick={handleLogin} />
           </Grid>
           <Grid className="change-password">
             <ButtonLevel variant="text" title="Cambia tu contraseña" />
