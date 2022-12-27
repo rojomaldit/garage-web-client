@@ -1,20 +1,20 @@
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import {
-  getAllPlaceGarage,
+  
   getTotalToCollect,
-  PlaceGarage,
   TotalToCollect,
 } from "../../services/dashboard";
 import "./Dashboard.scss";
 import DashboardGraphic from "../../components/Dashboard/Graphic";
 import ButtonLevel from "../../components/kit/Buttons";
+import { Garage, getAllGarage } from "../../services/garages";
 
 export default function Dashboard() {
-  const [placeGarageData, setPlaceGarageData] = useState<PlaceGarage[]>([]);
+  const [placeGarageData, setPlaceGarageData] = useState<Garage[]>([]);
   const handlePlaceGarage = () => {
     (async () => {
-      const data = await getAllPlaceGarage();
+      const data = await getAllGarage();
       setPlaceGarageData(data);
     })();
   };

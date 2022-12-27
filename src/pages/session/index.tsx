@@ -1,9 +1,9 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Session.scss";
-import TextInput from "../../components/kit/inputs/Text";
+import TextInput from "../../components/kit/Inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
-import InputPassword from "../../components/kit/inputs/Password";
+import InputPassword from "../../components/kit/Inputs/Password";
 import { logIn } from "../../services/session";
 import ButtonLevel from "../../components/kit/Buttons";
 
