@@ -1,6 +1,5 @@
-import {  Grid } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import Drawer from "../../components/Drawer";
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
 import { Garage, getAllGarage } from "../../services/garages";
@@ -19,19 +18,21 @@ export default function Garages() {
   return (
     <Grid className="garage">
       <Grid className="button-garage">
-        <MenuTop button={{
-          title: "Crear Nuevo",
-          onClick: () => console.log(),
-        }} title="Cocheras"></MenuTop>
-
+        <MenuTop
+          button={{
+            title: "Crear Nuevo",
+            onClick: () => console.log(),
+          }}
+          title="Cocheras"
+        ></MenuTop>
       </Grid>
       <Grid>
         <BasicTable
-          columns={["lugar", "Creacion", "estado"]}
+          columns={["Lugar", "Fecha de inicio", "Estado"]}
           rows={garageData.map((garage) => {
             return [
               garage.placeId,
-              garage.createdAt.split("T")[0],
+              garage.createdDate.split("T")[0],
               garage.isAvailable ? "Disponible" : "Ocupado",
             ];
           })}

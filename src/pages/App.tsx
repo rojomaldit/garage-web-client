@@ -1,7 +1,6 @@
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-import { BrowserRouter as Router, Routes, Route, NavigationType } from "react-router-dom";
-import { redirect } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 
 import BasicMenu from "../components/BasicMenu";
 import Dashboard from "./dashboard";

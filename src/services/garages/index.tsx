@@ -2,9 +2,9 @@ import axios from "axios";
 import { base, token } from "../VARIABLES";
 
 export type Garage = {
-  id: number
-  createdAt: string ;
-  placeId: string ;
+  id: number;
+  createdDate: string;
+  placeId: string;
   isAvailable: string;
 };
 
