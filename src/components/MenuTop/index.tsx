@@ -7,8 +7,7 @@ interface Props {
 
   button?: {
     onClick: () => void;
-    title:string;
-
+    title: string;
   };
 }
 
@@ -19,7 +18,11 @@ export default function MenuTop(props: Props) {
       <Grid item xs={6} className="menu-title">
         <Typography variant="h5">{title}</Typography>
       </Grid>
-      <Grid className="button-menu" item xs={6}>{button && <ButtonLevel title={button.title} />}</Grid>
+      <Grid className="button-menu" item xs={6}>
+        {button && (
+          <ButtonLevel title={button.title} onClick={button.onClick} />
+        )}
+      </Grid>
     </Grid>
   );
 }
