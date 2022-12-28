@@ -1,6 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
-import { VehicleDTO } from "../../../services/vehicle";
+import { VehicleDTO, postNewVehicle } from "../../../services/vehicle";
 import SelectInput from "../../kit/Inputs/Select";
 import TextInput from "../../kit/Inputs/Text";
 import BasicModal from "../../kit/Modal";
@@ -9,6 +9,7 @@ import "./CreateNewModal.scss";
 interface Props {
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   openModal: boolean;
+  updatePage: () => void;
 }
 
 const defaultVehicleDTO = {
@@ -20,11 +21,22 @@ const defaultVehicleDTO = {
 
 export default function CreateNew_Modal(props: Props) {
   const [vehicleDTO, setVehicleDTO] = useState<VehicleDTO>(defaultVehicleDTO);
-  console.log(vehicleDTO);
+
+  const handlePostNewVehicle = () => {
+    (async () => {
+        let response = await postNewVehicle(vehicleDTO);
+
+        if(response !== undefined) {
+          props.updatePage()
+          props.setOpenModal(false)
+        } 
+    })();
+  };
 
   return (
     <Grid className="CreateNew_Modal">
       <BasicModal
+        saveOnclick={handlePostNewVehicle}
         closeModal={() => props.setOpenModal(false)}
         open={props.openModal}
       >

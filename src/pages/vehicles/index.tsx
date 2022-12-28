@@ -41,7 +41,11 @@ export default function Vehicles() {
           })}
         />
       </Grid>
-      <CreateNew_Modal openModal={openModal} setOpenModal={setOpenModal} />
+      <CreateNew_Modal
+        updatePage={handleVehiclesData}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </Grid>
   );
 }
