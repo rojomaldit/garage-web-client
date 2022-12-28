@@ -21,3 +21,22 @@ export async function getAllVehicle() {
     console.warn(e);
   }
 }
+
+export type VehicleDTO = {
+  licensePlate: string;
+  vehicleType: string;
+  phoneNumber?: string;
+  notes?:string;
+};
+
+export async function postNewVehicle(dto: VehicleDTO) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.post(base + "/vehicle", dto, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}

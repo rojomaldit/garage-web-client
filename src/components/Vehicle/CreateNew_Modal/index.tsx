@@ -1,5 +1,7 @@
-import { Grid, Typography } from "@mui/material";
-import SelectLabels from "../../kit/Inputs/Select";
+import { Grid } from "@mui/material";
+import { useState } from "react";
+import { VehicleDTO } from "../../../services/vehicle";
+import SelectInput from "../../kit/Inputs/Select";
 import TextInput from "../../kit/Inputs/Text";
 import BasicModal from "../../kit/Modal";
 import "./CreateNewModal.scss";
@@ -9,7 +11,17 @@ interface Props {
   openModal: boolean;
 }
 
+const defaultVehicleDTO = {
+  licensePlate: "",
+  vehicleType: "",
+  phoneNumber: "",
+  notes: "",
+};
+
 export default function CreateNew_Modal(props: Props) {
+  const [vehicleDTO, setVehicleDTO] = useState<VehicleDTO>(defaultVehicleDTO);
+  console.log(vehicleDTO);
+
   return (
     <Grid className="CreateNew_Modal">
       <BasicModal
@@ -18,16 +30,70 @@ export default function CreateNew_Modal(props: Props) {
       >
         <Grid className="CreateNew_Modal_Form">
           <Grid className="form_input">
-            <TextInput onChange={() => {}} label="Patente" />
+            <TextInput
+              onChange={(licensePlate) =>
+                setVehicleDTO((prevState) => ({
+                  ...prevState,
+                  licensePlate,
+                }))
+              }
+              label="Patente"
+            />
           </Grid>
           <Grid className="form_input">
-         <SelectLabels title="Vehículo" />
+            <SelectInput
+              onChange={(vehicleType) =>
+                setVehicleDTO((prevState) => ({
+                  ...prevState,
+                  vehicleType: vehicleType as string,
+                }))
+              }
+              items={[
+                {
+                  value: "Car",
+                  label: "Auto",
+                },
+                {
+                  value: "Van",
+                  label: "Camioneta",
+                },
+                {
+                  value: "Motorcycle",
+                  label: "Motocicleta",
+                },
+                {
+                  value: "Bike",
+                  label: "Bicicleta ",
+                },
+                {
+                  value: "Truck",
+                  label: "Camión ",
+                },
+              ]}
+              label="Vehículo"
+            />
           </Grid>
           <Grid className="form_input">
-            <TextInput onChange={() => {}} label="Teléfono" />
+            <TextInput
+              onChange={(phoneNumber) =>
+                setVehicleDTO((prevState) => ({
+                  ...prevState,
+                  phoneNumber,
+                }))
+              }
+              label="Teléfono"
+            />
           </Grid>
           <Grid className="form_input">
-            <TextInput onChange={() => {}} label="Nota" />
+            <TextInput
+              onChange={(notes) =>
+                setVehicleDTO((prevState) => ({
+                  ...prevState,
+                  notes,
+                }))
+              }
+              label="Nota"
+            />
           </Grid>
         </Grid>
       </BasicModal>

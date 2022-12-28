@@ -1,10 +1,9 @@
-import React from "react";
 import { Grid, TextField } from "@mui/material";
 import "./TextInput.scss";
 
 interface Props {
   label: string;
-  onChange: React.Dispatch<React.SetStateAction<string>>;
+  onChange: (_value: string) => void;
 }
 export default function TextInput(props: Props) {
   const { label } = props;
@@ -12,6 +11,7 @@ export default function TextInput(props: Props) {
     <Grid>
       <Grid className="id">
         <TextField
+          color="secondary"
           onChange={(event) => props.onChange(event.target.value)}
           id="outlined-basic"
           label={label}

@@ -5,20 +5,28 @@ import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
 interface Props {
-  title: string;
+  onChange:  (_value: string | number) => void ;
+  label: string;
+  items: {
+    value: string | number;
+    label: string;
+  }[];
 }
 
-export default function SelectLabels(props: Props) {
-  
+
+export default function SelectInput(props: Props) {
   const [age, setAge] = React.useState("");
   const handleChange = (event: SelectChangeEvent) => {
     setAge(event.target.value);
+    props.onChange(event.target.value)
   };
 
   return (
     <div>
-      <FormControl sx={{ m: 1, minWidth: 235 }}>
-        <InputLabel id="demo-simple-select-helper-label">{props.title}</InputLabel>
+      <FormControl color="secondary" sx={{ m: 1, minWidth: 235 }}>
+        <InputLabel id="demo-simple-select-helper-label">
+          {props.label}
+        </InputLabel>
         <Select
           labelId="demo-simple-select-helper-label"
           id="demo-simple-select-helper"
@@ -26,10 +34,11 @@ export default function SelectLabels(props: Props) {
           label="Age"
           onChange={handleChange}
         >
-          <MenuItem value={10}>Ten</MenuItem>
-          <MenuItem value={20}>Twenty</MenuItem>
-          <MenuItem value={30}>Thirty</MenuItem>
+          {props.items.map(item => (
+            <MenuItem value={item.value}>{item.label}</MenuItem>
+          ))}
         </Select>
+
       </FormControl>
     </div>
   );

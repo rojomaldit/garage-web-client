@@ -18,11 +18,11 @@ export default function Session(props: Props) {
   const handleLogin = () => {
     (async () => {
       const token = await logIn(user, password);
-      
+
       if (!token) {
         return;
       }
-      
+
       props.setToken(token.access_token);
       localStorage.setItem("access_token", token.access_token);
 
@@ -54,18 +54,25 @@ export default function Session(props: Props) {
             </Grid>
             <Grid container>
               <Grid item xs={12} className="user">
-                <TextInput onChange={setUser} label="¿Cuál es tu usuario?" />
+                <TextInput
+                  onChange={(user) => setUser(user)}
+                  label="¿Cuál es tu usuario?"
+                />
               </Grid>
               <Grid item xs={12}>
                 <InputPassword
-                  onChange={setPassword}
+                  onChange={(pass) => setPassword(pass)}
                   label="¿Y tu contraseña?"
                 />
               </Grid>
             </Grid>
           </Grid>
           <Grid className="session">
-            <ButtonLevel variant="outlined" title="Ingresar" onClick={handleLogin} />
+            <ButtonLevel
+              variant="outlined"
+              title="Ingresar"
+              onClick={handleLogin}
+            />
           </Grid>
           <Grid className="change-password">
             <ButtonLevel variant="text" title="Cambia tu contraseña" />
@@ -78,7 +85,7 @@ export default function Session(props: Props) {
 
           <ButtonLevel
             variant="text"
-            href= "https://github.com/GradacMarcos"
+            href="https://github.com/GradacMarcos"
             title=" Gradac Marcos "
           />
 
