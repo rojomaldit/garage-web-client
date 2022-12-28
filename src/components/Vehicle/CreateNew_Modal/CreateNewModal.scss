@@ -1,7 +1,13 @@
-div.CreateNew_Modal_Form  {
-    text-align: center;
+@import "styles/variables.scss";
 
-    div.form_input {
-        margin-top: 1rem;
-    }
+div.CreateNew_Modal_Form {
+  text-align: center;
+
+  h4.form-input-title {
+    color: $primary-color;
+    margin-bottom: 2rem;
+  }
+  div.form_input {
+    margin-top: 1rem;
+  }
 }

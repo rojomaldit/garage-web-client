@@ -1,9 +1,6 @@
 import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
-<<<<<<< HEAD
-=======
 import CreateNew_Modal from "../../components/Garage/CreateNew_Modal";
->>>>>>> cd325c814fd7b649474d25c3b2339cf05cf0988d
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
 import { Garage, getAllGarage } from "../../services/garages";
@@ -27,22 +24,14 @@ export default function Garages() {
         <MenuTop
           button={{
             title: "Crear Nuevo",
-<<<<<<< HEAD
-            onClick: () => console.log(),
-=======
             onClick: () => setOpenModal(true),
->>>>>>> cd325c814fd7b649474d25c3b2339cf05cf0988d
           }}
           title="Cocheras"
         ></MenuTop>
       </Grid>
       <Grid>
         <BasicTable
-<<<<<<< HEAD
-          columns={["Lugar", "Fecha de inicio", "Estado"]}
-=======
           columns={["Lugar", "Creación", "Estado"]}
->>>>>>> cd325c814fd7b649474d25c3b2339cf05cf0988d
           rows={garageData.map((garage) => {
             return [
               garage.placeId,

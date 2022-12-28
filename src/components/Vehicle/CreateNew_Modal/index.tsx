@@ -1,4 +1,4 @@
-import { Grid } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
 import { VehicleDTO } from "../../../services/vehicle";
 import SelectInput from "../../kit/Inputs/Select";
@@ -29,6 +29,9 @@ export default function CreateNew_Modal(props: Props) {
         open={props.openModal}
       >
         <Grid className="CreateNew_Modal_Form">
+          <Typography className="form-input-title" variant="h4">
+            Crear nuevo vehículo
+          </Typography>
           <Grid className="form_input">
             <TextInput
               onChange={(licensePlate) =>
