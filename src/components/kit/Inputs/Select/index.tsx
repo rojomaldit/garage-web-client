@@ -23,7 +23,7 @@ export default function SelectInput(props: Props) {
 
   return (
     <div>
-      <FormControl color="secondary" sx={{ m: 1, minWidth: 235 }}>
+      <FormControl color="secondary" sx={{minWidth: "100%" }}>
         <InputLabel id="demo-simple-select-helper-label">
           {props.label}
         </InputLabel>

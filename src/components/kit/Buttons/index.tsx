@@ -4,31 +4,21 @@ import Button from "@mui/material/Button";
 interface Props {
   title: string;
   onClick?: () => void;
-  variant?: "filled" | "text" | "outlined" | "contained";
+  variant?: "text" | "outlined" | "contained";
   href?: string;
+  size?: "small" | "medium" | "large";
 }
 
 export default function ButtonLevel(props: Props) {
-  const { variant = "filled", title, onClick, href } = props;
+  const { variant = "contained", title, onClick, href, size = "medium" } = props;
   return (
     <Grid className="button-level">
-      {variant === "filled" && (
-        <Button
-          target="_blank"
-          href={!href ? "" : href}
-          onClick={onClick}
-          color="secondary"
-          variant="contained"
-        >
-          {title}
-        </Button>
-      )}
       {variant === "text" && (
         <Button
           onClick={onClick}
           href={!href ? "" : href}
           target="_blank"
-          size="small"
+          size={size}
           color="secondary"
           variant="text"
         >
@@ -39,7 +29,7 @@ export default function ButtonLevel(props: Props) {
         <Button
           onClick={onClick}
           href={!href ? "" : href}
-          size="small"
+          size={size}
           color="secondary"
           variant="outlined"
         >
@@ -51,7 +41,7 @@ export default function ButtonLevel(props: Props) {
           onClick={onClick}
           href={!href ? "" : href}
           target="_blank"
-          size="small"
+          size="large"
           color="secondary"
           variant="contained"
         >

@@ -1,4 +1,4 @@
-import { Grid, Typography } from "@mui/material";
+import { Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";

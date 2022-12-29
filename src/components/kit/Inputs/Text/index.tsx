@@ -9,15 +9,14 @@ export default function TextInput(props: Props) {
   const { label } = props;
   return (
     <Grid>
-      <Grid className="id">
-        <TextField
-          color="secondary"
-          onChange={(event) => props.onChange(event.target.value)}
-          id="outlined-basic"
-          label={label}
-          variant="outlined"
-        />
-      </Grid>
+      <TextField
+        className="text-input"
+        color="secondary"
+        onChange={(event) => props.onChange(event.target.value)}
+        id="outlined-basic"
+        label={label}
+        variant="outlined"
+      />
     </Grid>
   );
 }

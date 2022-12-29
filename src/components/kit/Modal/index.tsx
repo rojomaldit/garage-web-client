@@ -27,11 +27,12 @@ export default function BasicModal(props: Props) {
             <Box className="box-modal">
               <Grid>{props.children}</Grid>
               {props.saveOnclick && (
-                <Grid>
+                <Grid className="box-modal-footer">
                   <Divider className="divider" />
                   <Grid container className="button-modal">
                     <Grid item xs={6}>
                       <ButtonLevel
+                        size="large"
                         onClick={props.closeModal}
                         variant="outlined"
                         title="Cancelar"
@@ -39,6 +40,7 @@ export default function BasicModal(props: Props) {
                     </Grid>
                     <Grid item xs={6}>
                       <ButtonLevel
+                        size="large"
                         onClick={props.saveOnclick}
                         title="Guardar"
                       />
