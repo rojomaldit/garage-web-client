@@ -19,3 +19,18 @@ export async function getAllGarage() {
     console.warn(e);
   }
 }
+export type GarageDTO = {
+  placeId: string;
+};
+
+export async function postNewVehicle(dto: GarageDTO) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.post(base + "/place-garage", dto, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
