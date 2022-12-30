@@ -10,13 +10,13 @@ export default function Garages() {
   const [garageData, setGarageData] = useState<Garage[]>([]);
   const [openModal, setOpenModal] = useState(false);
 
-  const handleVehiclesData = () => {
+  const handleGarageData = () => {
     (async () => {
       const data = await getAllGarage();
       setGarageData(data);
     })();
   };
-  useEffect(handleVehiclesData, []);
+  useEffect(handleGarageData, []);
 
   return (
     <Grid className="garage">
@@ -27,7 +27,7 @@ export default function Garages() {
             onClick: () => setOpenModal(true),
           }}
           title="Cocheras"
-        ></MenuTop>
+        />
       </Grid>
       <Grid>
         <BasicTable
@@ -41,7 +41,11 @@ export default function Garages() {
           })}
         />
       </Grid>
-      <CreateNew_Modal openModal={openModal} setOpenModal={setOpenModal} />
+      <CreateNew_Modal
+        updatePage={handleGarageData}
+        openModal={openModal}
+        setOpenModal={setOpenModal}
+      />
     </Grid>
   );
 }

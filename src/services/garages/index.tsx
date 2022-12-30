@@ -23,7 +23,7 @@ export type GarageDTO = {
   placeId: string;
 };
 
-export async function postNewVehicle(dto: GarageDTO) {
+export async function postNewGarage(dto: GarageDTO) {
   try {
     const headers = {
       Authorization: `Bearer ${token}`,

@@ -23,7 +23,7 @@ export default function BasicMenu(props: Props) {
             Inicio
           </Button>
         </Grid>
-        
+
         <Grid className="menu-item">
           <Button href="/vehicles" className="button-cars" variant="contained">
             Vehiculos
@@ -36,6 +36,15 @@ export default function BasicMenu(props: Props) {
             variant="contained"
           >
             Cocheras
+          </Button>
+        </Grid>
+        <Grid className="menu-item">
+          <Button
+            href="/rents"
+            className="button-garages"
+            variant="contained"
+          >
+            Rentas
           </Button>
         </Grid>
       </Grid>

@@ -12,7 +12,7 @@ export default function TextInput(props: Props) {
       <TextField
         className="text-input"
         color="secondary"
-        onChange={(event) => props.onChange(event.target.value)}
+        onChange={(event) => props.onChange(event.target.value)} // Ejecuta nuestra funcion onChange que recibe el valor del input
         id="outlined-basic"
         label={label}
         variant="outlined"

@@ -5,11 +5,11 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import BasicMenu from "../components/BasicMenu";
 import Dashboard from "./dashboard";
 import Garages from "./garages";
+import Rents from "./rents";
 import Session from "./session";
 import Vehicles from "./vehicles";
 
 export default function Garage() {
-
   const [token, setToken] = useState<string>(
     localStorage.getItem("access_token") || ""
   );
@@ -47,6 +47,7 @@ export default function Garage() {
           <Route path="/dashboard" element={applyMenu(<Dashboard />)} />
           <Route path="/vehicles" element={applyMenu(<Vehicles />)} />
           <Route path="/garages" element={applyMenu(<Garages />)} />
+          <Route path="/rents" element={applyMenu(<Rents />)} />
         </Routes>
       </Router>
     </Grid>

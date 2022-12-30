@@ -12,7 +12,7 @@ export default function Vehicles() {
   const handleVehiclesData = () => {
     (async () => {
       const data = await getAllVehicle();
-      setVehiclesData(data);
+      if (data !== undefined) setVehiclesData(data);
     })();
   };
   useEffect(handleVehiclesData, []);
