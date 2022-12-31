@@ -6,6 +6,7 @@ import "./Modal.scss";
 import ButtonLevel from "../Buttons";
 
 interface Props {
+  disabled?: boolean;
   open: boolean;
   closeModal: () => void;
   children?: React.ReactElement;
@@ -40,6 +41,7 @@ export default function BasicModal(props: Props) {
                     </Grid>
                     <Grid item xs={6}>
                       <ButtonLevel
+                        disabled={props.disabled}
                         size="large"
                         onClick={props.saveOnclick}
                         title="Guardar"

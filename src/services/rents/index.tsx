@@ -9,13 +9,6 @@ export type Rent = {
   totalAmountCharged: number;
   lastDateCollected: string;
 };
-/*
-'Hourly',
-'Daily',
-'Weekly',
-'Monthly',
-'Yearly',
-*/
 
 export function rentTypeToES(rentType: string) {
   switch (rentType) {
@@ -47,23 +40,21 @@ export async function getAllRents() {
   }
 }
 
-/*export type VehicleDTO = {
-  licensePlate: string;
-  vehicleType: string;
-  phoneNumber?: string;
-  notes?:string;
+export type RentDTO = {
+  rentType: string;
+  amountForTime: number;
+  vehicle: number;
+  placeGarage: number;
 };
-*/
 
-/*export async function postNewVehicle(dto: VehicleDTO) {
+export async function postNewRent(dto: RentDTO) {
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    const response = await axios.post(base + "/vehicle", dto, { headers });
+    const response = await axios.post(base + "/rent", dto, { headers });
     return response.data;
   } catch (e) {
     console.warn(e);
   }
 }
-*/
