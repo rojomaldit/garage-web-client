@@ -8,6 +8,7 @@ import TableRow from "@mui/material/TableRow";
 import Paper from "@mui/material/Paper";
 import { Grid } from "@mui/material";
 import "./BasicTable.scss";
+import MoreVertOutlinedIcon from "@mui/icons-material/MoreVertOutlined";
 
 interface Props {
   columns: string[];
@@ -24,6 +25,7 @@ export default function BasicTable(props: Props) {
               {props.columns.map((e) => (
                 <TableCell>{e}</TableCell>
               ))}
+              <TableCell align="right">Opciones</TableCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -32,6 +34,12 @@ export default function BasicTable(props: Props) {
                 {row.map((e) => (
                   <TableCell>{e && e.length ? e : "-"}</TableCell>
                 ))}
+
+                <TableCell align="right">
+                  <MoreVertOutlinedIcon
+                    onClick={() => console.log("RED-PUFFFF")}
+                  />
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

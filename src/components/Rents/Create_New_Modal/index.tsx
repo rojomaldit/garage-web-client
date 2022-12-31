@@ -61,9 +61,6 @@ export default function CreateNew_Modal(props: Props) {
 
     return false;
   };
-  useEffect(() => {
-    disableRentDTO();
-  }, [RentDTO]);
 
   useEffect(handleGetVehicleData, []);
   const handleGetGarageData = () => {

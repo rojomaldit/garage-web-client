@@ -23,15 +23,27 @@ export default function CreateNew_Modal(props: Props) {
 
       if (response !== undefined) {
         props.updatePage();
-        props.setOpenModal(false);
+        onCloseModal();
       }
     })();
   };
+
+  const onCloseModal = () => {
+    props.setOpenModal(false);
+    setGarageDTO(defaultGarageDTO);
+  };
+
+  const disableGarageDTO = () => {
+    if (garageDTO.placeId === "") return true;
+    return false;
+  };
+
   return (
     <Grid className="CreateNew_Modal">
       <BasicModal
+        disabled={disableGarageDTO()}
         saveOnclick={handlePostNewGarage}
-        closeModal={() => props.setOpenModal(false)}
+        closeModal={onCloseModal}
         open={props.openModal}
       >
         <Grid className="modal-title">

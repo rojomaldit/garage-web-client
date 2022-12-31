@@ -1,5 +1,5 @@
 import { Grid, Typography } from "@mui/material";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { VehicleDTO, postNewVehicle } from "../../../services/vehicle";
 import SelectInput from "../../kit/Inputs/Select";
 import TextInput from "../../kit/Inputs/Text";
@@ -24,20 +24,34 @@ export default function CreateNew_Modal(props: Props) {
 
   const handlePostNewVehicle = () => {
     (async () => {
-        let response = await postNewVehicle(vehicleDTO);
+      let response = await postNewVehicle(vehicleDTO);
 
-        if(response !== undefined) {
-          props.updatePage()
-          props.setOpenModal(false)
-        } 
+      if (response !== undefined) {
+        props.updatePage();
+        onCloseModal();
+      }
     })();
   };
+
+  const disableVehicleDTO = () => {
+    if (vehicleDTO.licensePlate === "" || vehicleDTO.vehicleType === "")
+      return true;
+
+    return false;
+  };
+  const onCloseModal = () => {
+    props.setOpenModal(false);
+    setVehicleDTO(defaultVehicleDTO);
+  };
+
+  useEffect(handlePostNewVehicle, []);
 
   return (
     <Grid className="CreateNew_Modal">
       <BasicModal
+        disabled={disableVehicleDTO()}
         saveOnclick={handlePostNewVehicle}
-        closeModal={() => props.setOpenModal(false)}
+        closeModal={onCloseModal}
         open={props.openModal}
       >
         <Grid className="CreateNew_Modal_Form">

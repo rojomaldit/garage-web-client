@@ -1,6 +1,5 @@
 import { Grid } from "@mui/material";
 import Button from "@mui/material/Button";
-
 interface Props {
   disabled?: boolean;
   title: string;
@@ -8,6 +7,7 @@ interface Props {
   variant?: "text" | "outlined" | "contained";
   href?: string;
   size?: "small" | "medium" | "large";
+  icon?: React.ReactElement;
 }
 
 export default function ButtonLevel(props: Props) {
@@ -22,6 +22,7 @@ export default function ButtonLevel(props: Props) {
     <Grid className="button-level">
       {variant === "text" && (
         <Button
+          startIcon={props.icon}
           disabled={props.disabled}
           onClick={onClick}
           href={!href ? "" : href}
@@ -35,6 +36,7 @@ export default function ButtonLevel(props: Props) {
       )}
       {variant === "outlined" && (
         <Button
+          startIcon={props.icon}
           disabled={props.disabled}
           onClick={onClick}
           href={!href ? "" : href}
@@ -47,6 +49,7 @@ export default function ButtonLevel(props: Props) {
       )}
       {variant === "contained" && (
         <Button
+          startIcon={props.icon}
           disabled={props.disabled}
           onClick={onClick}
           href={!href ? "" : href}

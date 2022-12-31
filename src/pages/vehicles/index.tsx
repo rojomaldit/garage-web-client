@@ -5,6 +5,7 @@ import MenuTop from "../../components/MenuTop";
 import CreateNew_Modal from "../../components/Vehicle/CreateNew_Modal";
 import { getAllVehicle, Vehicle } from "../../services/vehicle";
 
+
 export default function Vehicles() {
   const [vehiclesData, setVehiclesData] = useState<Vehicle[]>([]);
   const [openModal, setOpenModal] = useState(false);
@@ -46,6 +47,8 @@ export default function Vehicles() {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
+        
+
     </Grid>
   );
 }
