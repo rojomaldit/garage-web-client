@@ -4,7 +4,7 @@ import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
 import CreateNew_Modal from "../../components/Vehicle/CreateNew_Modal";
 import { getAllVehicle, Vehicle } from "../../services/vehicle";
-
+import DeleteIcon from "@mui/icons-material/Delete";
 
 export default function Vehicles() {
   const [vehiclesData, setVehiclesData] = useState<Vehicle[]>([]);
@@ -31,6 +31,17 @@ export default function Vehicles() {
       </Grid>
       <Grid>
         <BasicTable
+          options={[
+            {
+              startIcon: <DeleteIcon />,
+              label: "eliminar",
+              onClick: () => console.log("asdasd"),
+            },
+            {
+              label: "editar",
+              onClick: () => console.log("asdasd"),
+            },
+          ]}
           columns={["Patente", "Tipo de vehiculo", "Teléfono", "Notas"]}
           rows={vehiclesData.map((vehicle) => {
             return [
@@ -47,8 +58,6 @@ export default function Vehicles() {
         openModal={openModal}
         setOpenModal={setOpenModal}
       />
-        
-
     </Grid>
   );
 }
