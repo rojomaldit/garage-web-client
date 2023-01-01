@@ -3,7 +3,8 @@ import { useEffect, useState } from "react";
 import CreateNew_Modal from "../../components/Garage/CreateNew_Modal";
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
-import { Garage, getAllGarage } from "../../services/garages";
+import { deleteGarage, Garage, getAllGarage } from "../../services/garages";
+import DeleteIcon from "@mui/icons-material/Delete";
 import "./Garages.scss";
 
 export default function Garages() {
@@ -18,6 +19,14 @@ export default function Garages() {
   };
   useEffect(handleGarageData, []);
 
+  const handleDeletedGarage = (id: number) => {
+    (async () => {
+      const data = await deleteGarage(id);
+
+      if (data !== undefined) handleGarageData();
+    })();
+  };
+
   return (
     <Grid className="garage">
       <Grid className="button-garage">
@@ -31,6 +40,17 @@ export default function Garages() {
       </Grid>
       <Grid>
         <BasicTable
+          options={[
+            {
+              startIcon: <DeleteIcon />,
+              label: "eliminar",
+              onClick: (rowIndex: number) => {
+                const vehicle = garageData[rowIndex];
+
+                handleDeletedGarage(vehicle.id);
+              },
+            },
+          ]}
           columns={["Lugar", "Creación", "Estado"]}
           rows={garageData.map((garage) => {
             return [

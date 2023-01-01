@@ -34,3 +34,15 @@ export async function postNewGarage(dto: GarageDTO) {
     console.warn(e);
   }
 }
+
+export async function deleteGarage(id: number) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.delete(base + "/place-garage/" + id, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
