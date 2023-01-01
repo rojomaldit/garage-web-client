@@ -15,9 +15,9 @@ interface Props {
   columns: string[];
   rows: string[][];
   options?: {
-    startIcon?: React.ReactElement;
-    label?: string;
-    onClick?: () => void;
+    startIcon: React.ReactElement;
+    label: string;
+    onClick: (rowIndex: number) => void;
   }[];
 }
 
@@ -78,9 +78,9 @@ export default function BasicTable(props: Props) {
                         <ButtonLevel
                           startIcon={option.startIcon}
                           size="small"
-                          variant="contained"
+                          variant="text"
                           title={option.label ? option.label : ""}
-                          onClick={option?.onClick}
+                          onClick={() => option.onClick(i)}
                         />
                       ))}
                     </Grid>

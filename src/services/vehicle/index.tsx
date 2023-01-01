@@ -26,7 +26,7 @@ export type VehicleDTO = {
   licensePlate: string;
   vehicleType: string;
   phoneNumber?: string;
-  notes?:string;
+  notes?: string;
 };
 
 export async function postNewVehicle(dto: VehicleDTO) {
@@ -35,6 +35,18 @@ export async function postNewVehicle(dto: VehicleDTO) {
       Authorization: `Bearer ${token}`,
     };
     const response = await axios.post(base + "/vehicle", dto, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
+export async function deleteVehicle(id: number) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.delete(base + "/vehicle/" + id, { headers });
     return response.data;
   } catch (e) {
     console.warn(e);

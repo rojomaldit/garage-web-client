@@ -5,6 +5,7 @@ import MenuTop from "../../components/MenuTop";
 import CreateNew_Modal from "../../components/Rents/Create_New_Modal";
 import { getAllRents, Rent } from "../../services/rents";
 import { rentTypeToES } from "../../services/rents";
+import SavingsRoundedIcon from '@mui/icons-material/SavingsRounded';
 
 export default function Rents() {
   const [OpenModal, setOpenModal] = useState(false);
@@ -17,7 +18,6 @@ export default function Rents() {
   };
   useEffect(handleRentsData, []);
   console.log(rentsData);
-
 
   return (
     <Grid className="rents">
@@ -32,6 +32,11 @@ export default function Rents() {
       </Grid>
       <Grid>
         <BasicTable
+        options={{
+          startIcon:{<SavingsRoundedIcon/>},
+          label:"Cobrar",
+          onClick:(rowIndex: id) => console.log("asdas")
+        }}
           columns={[
             "Fecha de inicio",
             "Tipo de renta",

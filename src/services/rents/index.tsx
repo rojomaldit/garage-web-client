@@ -58,3 +58,15 @@ export async function postNewRent(dto: RentDTO) {
     console.warn(e);
   }
 }
+
+export async function rentCollet(id:number) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.get(base + "/rent/collect" + id, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
