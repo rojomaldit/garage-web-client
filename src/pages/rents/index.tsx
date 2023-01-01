@@ -3,13 +3,14 @@ import { useEffect, useState } from "react";
 import BasicTable from "../../components/kit/BasicTable";
 import MenuTop from "../../components/MenuTop";
 import CreateNew_Modal from "../../components/Rents/Create_New_Modal";
-import { getAllRents, Rent } from "../../services/rents";
+import { getAllRents, Rent, rentCollet } from "../../services/rents";
 import { rentTypeToES } from "../../services/rents";
 import SavingsRoundedIcon from "@mui/icons-material/SavingsRounded";
 
 export default function Rents() {
   const [OpenModal, setOpenModal] = useState(false);
   const [rentsData, setRentsData] = useState<Rent[]>([]);
+
   const handleRentsData = () => {
     (async () => {
       const data = await getAllRents();
@@ -17,7 +18,12 @@ export default function Rents() {
     })();
   };
   useEffect(handleRentsData, []);
-  console.log(rentsData);
+
+  const handleCollectData = (id: number) => {
+    (async () => {
+      await rentCollet(id);
+    })();
+  };
 
   return (
     <Grid className="rents">
@@ -32,6 +38,19 @@ export default function Rents() {
       </Grid>
       <Grid>
         <BasicTable
+
+          options={[
+            {
+              startIcon: <SavingsRoundedIcon />,
+              label: "Cobrar",
+              onClick: (rowIndex: number) => {
+                const rent = rentsData[rowIndex];
+
+                handleCollectData(rent.id);
+              },
+            },
+            
+          ]}
           columns={[
             "Fecha de inicio",
             "Tipo de renta",

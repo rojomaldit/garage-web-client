@@ -25,13 +25,18 @@ export default function BasicTable(props: Props) {
   // anchorEl nos dice donde esta ubicado los 3 puntitos
   //de esta forma podemos poner el Popper en el lugar correcto
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const [indexSelected, setIndexSelected] = React.useState<number>(0);
 
   // Si anchorEl tiene elemento entonces abrimos
   const open = Boolean(anchorEl);
   const id = open ? "simple-popper" : undefined;
 
   // funcion encargada de abrir el popper
-  const handleClick = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClick = (
+    event: React.MouseEvent<HTMLElement>,
+    indexSelected: number
+  ) => {
+    setIndexSelected(indexSelected);
     setAnchorEl(anchorEl ? null : event.currentTarget); // seteo el anchorEl con el elemento actual (con los 3 puntitos)
   };
 
@@ -48,8 +53,8 @@ export default function BasicTable(props: Props) {
             </TableRow>
           </TableHead>
           <TableBody>
-            {props.rows.map((row, i) => (
-              <TableRow key={i}>
+            {props.rows.map((row, rowIndex) => (
+              <TableRow key={rowIndex}>
                 {row.map((e) => (
                   <TableCell>{e && e.length ? e : "-"}</TableCell>
                 ))}
@@ -61,36 +66,30 @@ export default function BasicTable(props: Props) {
                       border: 0,
                     }}
                     type="button"
-                    onClick={handleClick}
+                    onClick={(event) => handleClick(event, rowIndex)}
                   >
                     {/* 3 puntitos icono */}
                     <MoreVertOutlinedIcon />
                   </button>
-
-                  <Popper
-                    className="popper"
-                    id={id}
-                    open={open}
-                    anchorEl={anchorEl}
-                  >
-                    <Grid className="options">
-                      {props.options?.map((option) => (
-                        <ButtonLevel
-                          startIcon={option.startIcon}
-                          size="small"
-                          variant="text"
-                          title={option.label ? option.label : ""}
-                          onClick={() => option.onClick(i)}
-                        />
-                      ))}
-                    </Grid>
-                  </Popper>
                 </TableCell>
               </TableRow>
             ))}
           </TableBody>
         </Table>
       </TableContainer>
+      <Popper className="popper" id={id} open={open} anchorEl={anchorEl}>
+        <Grid className="options">
+          {props.options?.map((option) => (
+            <ButtonLevel
+              startIcon={option.startIcon}
+              size="small"
+              variant="text"
+              title={option.label ? option.label : ""}
+              onClick={() => option.onClick(indexSelected)}
+            />
+          ))}
+        </Grid>
+      </Popper>
     </Grid>
   );
 }
