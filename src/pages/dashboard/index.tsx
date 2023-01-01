@@ -1,10 +1,6 @@
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import {
-  
-  getTotalToCollect,
-  TotalToCollect,
-} from "../../services/dashboard";
+import { getTotalToCollect, TotalToCollectData } from "../../services/rents";
 import "./Dashboard.scss";
 import DashboardGraphic from "../../components/Dashboard/Graphic";
 import ButtonLevel from "../../components/kit/Buttons";
@@ -20,7 +16,7 @@ export default function Dashboard() {
   };
 
   const [totalToCollectData, setTotalToCollectData] =
-    useState<TotalToCollect>();
+    useState<TotalToCollectData>();
   const handleTotalCollect = () => {
     (async () => {
       const data = await getTotalToCollect();

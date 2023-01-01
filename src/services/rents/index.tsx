@@ -74,3 +74,38 @@ export async function rentCollet(id: number) {
     console.warn(e);
   }
 }
+
+export async function deleteRent(id: number) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.delete(base + "/rent/" + id, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
+
+export type TotalToCollectData = {
+  totalRents: number;
+  totalToCollectByRent: {
+    rentId: number; 
+    totalToCollect: number;
+  }[];
+  totalToCollect: number;
+};
+
+export async function getTotalToCollect() {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.get(base + "/rent/total-to-collect", {
+      headers,
+    });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}
