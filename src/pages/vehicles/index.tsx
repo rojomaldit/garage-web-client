@@ -5,10 +5,14 @@ import MenuTop from "../../components/MenuTop";
 import CreateNew_Modal from "../../components/Vehicle/CreateNew_Modal";
 import { deleteVehicle, getAllVehicle, Vehicle } from "../../services/vehicle";
 import DeleteIcon from "@mui/icons-material/Delete";
+import Alerts from "../../components/kit/Alerts";
 
 export default function Vehicles() {
   const [vehiclesData, setVehiclesData] = useState<Vehicle[]>([]);
   const [openModal, setOpenModal] = useState(false);
+  const [alertStatus, setAlertStatus] = useState<
+    "noProcess" | "success" | "error"
+  >("noProcess");
 
   const handleDeletedVehicle = (id: number) => {
     (async () => {
@@ -61,7 +65,18 @@ export default function Vehicles() {
           })}
         />
       </Grid>
+      {alertStatus !== "noProcess" && (
+        <Alerts
+          severity={alertStatus}
+          message={
+            alertStatus === "success"
+              ? "El vehículo se a creado con exíto"
+              : "Ocurrío un error "
+          }
+        />
+      )}
       <CreateNew_Modal
+        setAlertStatus={setAlertStatus}
         updatePage={handleVehiclesData}
         openModal={openModal}
         setOpenModal={setOpenModal}

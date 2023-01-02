@@ -1,12 +1,16 @@
 import { Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import { VehicleDTO, postNewVehicle } from "../../../services/vehicle";
+import Alerts from "../../kit/Alerts";
 import SelectInput from "../../kit/Inputs/Select";
 import TextInput from "../../kit/Inputs/Text";
 import BasicModal from "../../kit/Modal";
 import "./CreateNewModal.scss";
 
 interface Props {
+  setAlertStatus: React.Dispatch<
+    React.SetStateAction<"noProcess" | "success" | "error">
+  >;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   openModal: boolean;
   updatePage: () => void;
@@ -29,6 +33,9 @@ export default function CreateNew_Modal(props: Props) {
       if (response !== undefined) {
         props.updatePage();
         onCloseModal();
+        props.setAlertStatus("success");
+      } else {
+        props.setAlertStatus("error");
       }
     })();
   };
@@ -43,8 +50,6 @@ export default function CreateNew_Modal(props: Props) {
     props.setOpenModal(false);
     setVehicleDTO(defaultVehicleDTO);
   };
-
-  useEffect(handlePostNewVehicle, []);
 
   return (
     <Grid className="CreateNew_Modal">
