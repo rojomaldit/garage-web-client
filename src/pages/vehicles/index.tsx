@@ -6,11 +6,17 @@ import CreateNew_Modal from "../../components/Vehicle/CreateNew_Modal";
 import { deleteVehicle, getAllVehicle, Vehicle } from "../../services/vehicle";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Alerts from "../../components/kit/Alerts";
+import ConfirmationModal from "../../components/kit/Modal/Confirmation-modal";
 
 export default function Vehicles() {
   const [vehiclesData, setVehiclesData] = useState<Vehicle[]>([]);
   const [openModal, setOpenModal] = useState(false);
+  const [vehicleToDeleteModal, setVehicleToDeleteModal] = useState(0);
   const [alertStatus, setAlertStatus] = useState<
+    "noProcess" | "success" | "error"
+  >("noProcess");
+
+  const [alertStatusConfirmation, setAlertStatusConfirmation] = useState<
     "noProcess" | "success" | "error"
   >("noProcess");
 
@@ -18,7 +24,14 @@ export default function Vehicles() {
     (async () => {
       const data = await deleteVehicle(id);
 
-      if (data !== undefined) handleVehiclesData();
+      if (data !== undefined) {
+        handleVehiclesData();
+        setAlertStatusConfirmation("success");
+      } else {
+        setAlertStatusConfirmation("error");
+      }
+
+      setVehicleToDeleteModal(0);
     })();
   };
 
@@ -49,8 +62,7 @@ export default function Vehicles() {
               label: "eliminar",
               onClick: (rowIndex: number) => {
                 const vehicle = vehiclesData[rowIndex];
-
-                handleDeletedVehicle(vehicle.id);
+                setVehicleToDeleteModal(vehicle.id);
               },
             },
           ]}
@@ -72,15 +84,39 @@ export default function Vehicles() {
           message={
             alertStatus === "success"
               ? "El vehículo se a creado con exíto"
-              : "Ocurrío un error "
+              : "Ocurrío un error"
           }
         />
       )}
+      {alertStatusConfirmation !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertStatusConfirmation}
+          severity={alertStatusConfirmation}
+          message={
+            alertStatusConfirmation === "success"
+              ? "El vehículo se a eliminado con exíto"
+              : "Ocurrío un error al eliminar el vehículo"
+          }
+        />
+      )}
+
       <CreateNew_Modal
         setAlertStatus={setAlertStatus}
         updatePage={handleVehiclesData}
         openModal={openModal}
         setOpenModal={setOpenModal}
+      />
+
+      <ConfirmationModal
+        confirmationOption={{
+          onclick: () => handleDeletedVehicle(vehicleToDeleteModal),
+          title: "Eliminar",
+          color: "error",
+        }}
+        title="Eliminar vehículo"
+        description="Este vehículo se eliminara permanentemente."
+        closeModal={() => setVehicleToDeleteModal(0)}
+        open={vehicleToDeleteModal ? true : false}
       />
     </Grid>
   );

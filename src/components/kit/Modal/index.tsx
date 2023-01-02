@@ -4,7 +4,6 @@ import Fade from "@mui/material/Fade";
 import { Divider, Grid } from "@mui/material";
 import "./Modal.scss";
 import ButtonLevel from "../Buttons";
-import DeleteIcon from "@mui/icons-material/Delete";
 
 interface Props {
   disabled?: boolean;
@@ -44,6 +43,7 @@ export default function BasicModal(props: Props) {
                       <ButtonLevel
                         disabled={props.disabled}
                         size="large"
+                        
                         onClick={props.saveOnclick}
                         title="Guardar"
                       />

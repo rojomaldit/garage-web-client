@@ -85,7 +85,10 @@ export default function BasicTable(props: Props) {
               size="small"
               variant="text"
               title={option.label ? option.label : ""}
-              onClick={() => option.onClick(indexSelected)}
+              onClick={() => {
+                option.onClick(indexSelected);
+                setAnchorEl(null);
+              }}
             />
           ))}
         </Grid>

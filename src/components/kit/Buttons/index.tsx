@@ -3,6 +3,14 @@ import Button from "@mui/material/Button";
 import React from "react";
 
 interface Props {
+  color?:
+    | "success"
+    | "error"
+    | "info"
+    | "warning"
+    | "inherit"
+    | "primary"
+    | "secondary";
   disabled?: boolean;
   title: string;
   onClick?: () => void;
@@ -19,6 +27,7 @@ export default function ButtonLevel(props: Props) {
     onClick,
     href,
     size = "medium",
+    color = "secondary",
   } = props;
   return (
     <Grid className="button-level">
@@ -30,7 +39,7 @@ export default function ButtonLevel(props: Props) {
           href={!href ? "" : href}
           target="_blank"
           size={size}
-          color="secondary"
+          color={color}
           variant="text"
         >
           {title}
@@ -43,7 +52,7 @@ export default function ButtonLevel(props: Props) {
           onClick={onClick}
           href={!href ? "" : href}
           size={size}
-          color="secondary"
+          color={color}
           variant="outlined"
         >
           {title}
@@ -57,7 +66,7 @@ export default function ButtonLevel(props: Props) {
           href={!href ? "" : href}
           target="_blank"
           size={size}
-          color="secondary"
+          color={color}
           variant="contained"
         >
           {title}
