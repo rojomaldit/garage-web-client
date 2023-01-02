@@ -67,6 +67,7 @@ export default function Vehicles() {
       </Grid>
       {alertStatus !== "noProcess" && (
         <Alerts
+          setAlertStatus={setAlertStatus}
           severity={alertStatus}
           message={
             alertStatus === "success"
