@@ -6,6 +6,9 @@ import { useState } from "react";
 import { GarageDTO, postNewGarage } from "../../../services/garages";
 
 interface Props {
+  setAlertStatus: React.Dispatch<
+    React.SetStateAction<"noProcess" | "success" | "error">
+  >;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   openModal: boolean;
   updatePage: () => void;
@@ -24,6 +27,9 @@ export default function CreateNew_Modal(props: Props) {
       if (response !== undefined) {
         props.updatePage();
         onCloseModal();
+        props.setAlertStatus("success");
+      } else {
+        props.setAlertStatus("error");
       }
     })();
   };

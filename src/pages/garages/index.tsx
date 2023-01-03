@@ -6,10 +6,20 @@ import MenuTop from "../../components/MenuTop";
 import { deleteGarage, Garage, getAllGarage } from "../../services/garages";
 import DeleteIcon from "@mui/icons-material/Delete";
 import "./Garages.scss";
+import ConfirmationModal from "../../components/kit/Modal/Confirmation-modal";
+import Alerts from "../../components/kit/Alerts";
 
 export default function Garages() {
   const [garageData, setGarageData] = useState<Garage[]>([]);
   const [openModal, setOpenModal] = useState(false);
+  const [garageToDeleteModal, setGarageToDeleteModal] = useState(0);
+  const [alertStatus, setAlertStatus] = useState<
+    "noProcess" | "success" | "error"
+  >("noProcess");
+
+  const [alertStatusConfirmation, setAlertStatusConfirmation] = useState<
+    "noProcess" | "success" | "error"
+  >("noProcess");
 
   const handleGarageData = () => {
     (async () => {
@@ -22,8 +32,13 @@ export default function Garages() {
   const handleDeletedGarage = (id: number) => {
     (async () => {
       const data = await deleteGarage(id);
-
-      if (data !== undefined) handleGarageData();
+      if (data !== undefined) {
+        handleGarageData();
+        setAlertStatusConfirmation("success");
+      } else {
+        setAlertStatusConfirmation("error");
+      }
+      setGarageToDeleteModal(0);
     })();
   };
 
@@ -46,8 +61,7 @@ export default function Garages() {
               label: "eliminar",
               onClick: (rowIndex: number) => {
                 const vehicle = garageData[rowIndex];
-
-                handleDeletedGarage(vehicle.id);
+                setGarageToDeleteModal(vehicle.id);
               },
             },
           ]}
@@ -65,7 +79,43 @@ export default function Garages() {
         updatePage={handleGarageData}
         openModal={openModal}
         setOpenModal={setOpenModal}
+        setAlertStatus={setAlertStatus}
       />
+
+      <ConfirmationModal
+        description="asdasdasd"
+        title="Eliminar"
+        closeModal={() => setGarageToDeleteModal(0)}
+        open={garageToDeleteModal ? true : false}
+        confirmationOption={{
+          onclick: () => handleDeletedGarage(garageToDeleteModal),
+
+          title: "Eliminar",
+          color: "error",
+        }}
+      />
+      {alertStatus !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertStatus}
+          severity={alertStatus}
+          message={
+            alertStatus === "success"
+              ? "El vehículo se a creado con exíto"
+              : "Ocurrío un error"
+          }
+        />
+      )}
+      {alertStatusConfirmation !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertStatusConfirmation}
+          severity={alertStatusConfirmation}
+          message={
+            alertStatusConfirmation === "success"
+              ? "La cochera se a eliminado con exíto"
+              : "Ocurrío un error al eliminar la cochera"
+          }
+        />
+      )}
     </Grid>
   );
 }
