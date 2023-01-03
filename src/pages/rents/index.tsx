@@ -31,9 +31,11 @@ export default function Rents() {
     defaultTotalToCollectData
   );
   const [alertStatus, setAlertStatus] = useState<AlertType>("noProcess");
+  const [alertStatusCollect, setAlertStatusCollect] =
+    useState<AlertType>("noProcess");
   const [alertStatusConfirmation, setAlertStatusConfirmation] =
     useState<AlertType>("noProcess");
-    
+
   const handleRentsData = () => {
     (async () => {
       const data = await getAllRents();
@@ -47,7 +49,6 @@ export default function Rents() {
   const handleDeletedRent = () => {
     (async () => {
       const data = await deleteRent(rentToDeleteModal);
-      
 
       if (data !== undefined) {
         handleRentsData();
@@ -65,11 +66,18 @@ export default function Rents() {
       if (data !== undefined) setCollectData(data);
     })();
   };
+
   useEffect(handleTotalToCollectData, []);
 
   const handleCollect = (id: number) => {
     (async () => {
-      await rentCollet(id);
+      const data = await rentCollet(id);
+      if (data !== undefined) {
+        handleRentsData();
+        setAlertStatusCollect("success");
+      } else {
+        setAlertStatusCollect("error");
+      }
     })();
   };
 
@@ -124,13 +132,14 @@ export default function Rents() {
         />
       </Grid>
       <CreateNew_Modal
+        setAlertStatus={setAlertStatus}
         updatePage={handleRentsData}
         openModal={OpenModal}
         setOpenModal={setOpenModal}
       />
 
       <ConfirmationModal
-        description="asdasdasd"
+        description="Se está por eliminar la renta"
         title="Eliminar"
         closeModal={() => setRentToDeleteModal(0)}
         open={rentToDeleteModal ? true : false}
@@ -151,6 +160,17 @@ export default function Rents() {
           }
         />
       )}
+      {alertStatus !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertStatus}
+          severity={alertStatus}
+          message={
+            alertStatus === "success"
+              ? "La renta se a creado con exíto"
+              : "Ocurrío un error al crear la renta"
+          }
+        />
+      )}
       {alertStatusConfirmation !== "noProcess" && (
         <Alerts
           setAlertStatus={setAlertStatusConfirmation}
@@ -159,6 +179,17 @@ export default function Rents() {
             alertStatusConfirmation === "success"
               ? "La renta se a eliminado con exíto"
               : "Ocurrío un error al eliminar la renta"
+          }
+        />
+      )}
+      {alertStatusCollect !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertStatusCollect}
+          severity={alertStatusCollect}
+          message={
+            alertStatusCollect === "success"
+              ? "La renta se cobró con exíto"
+              : "Ocurrío un error al cobrar la renta"
           }
         />
       )}

@@ -6,8 +6,10 @@ import { getAllGarage, Garage } from "../../../services/garages";
 import NumberInput from "../../kit/Inputs/Number";
 import SelectInput from "../../kit/Inputs/Select";
 import BasicModal from "../../kit/Modal";
+import { AlertType } from "../../kit/Alerts";
 
 interface Props {
+  setAlertStatus: React.Dispatch<React.SetStateAction<AlertType>>;
   setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
   openModal: boolean;
   updatePage: () => void;
@@ -37,6 +39,9 @@ export default function CreateNew_Modal(props: Props) {
       if (response !== undefined) {
         props.updatePage();
         onCloseModal();
+        props.setAlertStatus("success");
+      } else {
+        props.setAlertStatus("error");
       }
     })();
   };
