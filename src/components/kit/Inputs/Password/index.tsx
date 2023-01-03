@@ -10,6 +10,7 @@ export default function InputPassword(props: Props) {
   return (
     <Grid className="password">
       <TextField
+        className="text-password"
         onChange={(event) => props.onChange(event.target.value)}
         id="outlined-password-input"
         label={label}

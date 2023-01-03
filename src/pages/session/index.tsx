@@ -1,29 +1,37 @@
 import React from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Session.scss";
-import TextInput from "../../components/kit/inputs/Text";
+import TextInput from "../../components/kit/Inputs/Text";
 import EmojiTransportationIcon from "@mui/icons-material/EmojiTransportation";
-import InputPassword from "../../components/kit/inputs/Password";
-import ButtonSession from "../../components/kit/Buttons/ButtonSession";
-import ButtonText from "../../components/kit/Buttons/ButtonText";
+import InputPassword from "../../components/kit/Inputs/Password";
 import { logIn } from "../../services/session";
+import ButtonLevel from "../../components/kit/Buttons";
 
 interface Props {
   setToken: React.Dispatch<React.SetStateAction<string>>;
 }
 
 export default function Session(props: Props) {
-
   const [user, setUser] = React.useState<string>("");
   const [password, setPassword] = React.useState<string>("");
 
   const handleLogin = () => {
     (async () => {
       const token = await logIn(user, password);
+
+      if (!token) {
+        return;
+      }
+
       props.setToken(token.access_token);
-      localStorage.setItem('access_token', JSON.stringify(token.access_token));
+      localStorage.setItem("access_token", token.access_token);
+
+      // 8 hours to expirate token
+      const expiration = new Date();
+      expiration.setHours(expiration.getHours() + 8);
+      localStorage.setItem("token_expiration", expiration.toString());
     })();
-  }
+  };
 
   return (
     <Grid className="login" container>
@@ -44,29 +52,48 @@ export default function Session(props: Props) {
                 Bienvenido a nuestro sistema de gestion de cocheras
               </Typography>
             </Grid>
-
-            <Grid className="user">
-              <TextInput onChange={setUser} label="¿Cuál es tu usuario?" />
-              <InputPassword onChange={setPassword} label="¿Y tu contraseña?" />
+            <Grid container>
+              <Grid item xs={12} className="user">
+                <TextInput
+                  onChange={(user) => setUser(user)}
+                  label="¿Cuál es tu usuario?"
+                />
+              </Grid>
+              <Grid item xs={12}>
+                <InputPassword
+                  onChange={(pass) => setPassword(pass)}
+                  label="¿Y tu contraseña?"
+                />
+              </Grid>
             </Grid>
           </Grid>
-          <Grid>
-            <ButtonSession title="Ingresar" onClick={handleLogin} />
+          <Grid className="session">
+            <ButtonLevel
+              variant="outlined"
+              title="Ingresar"
+              onClick={handleLogin}
+            />
           </Grid>
           <Grid className="change-password">
-            <ButtonText subtitle="" title="Cambia tu contraseña"></ButtonText>
+            <ButtonLevel variant="text" title="Cambia tu contraseña" />
           </Grid>
         </Grid>
-        <Grid container className="creators" >
-          <Grid className="created"  item xs={3}>
+        <Grid container className="creators">
+          <Grid className="created" item xs={3}>
             <Typography variant="body2"> Creado por: </Typography>
           </Grid>
-          <Grid item xs={4.5}>
-            <ButtonText subtitle="https://github.com/GradacMarcos"  title=" Gradac Marcos "></ButtonText>
-          </Grid>
-          <Grid item xs={4.5}>
-            <ButtonText subtitle="https://github.com/rojomaldit" title="Lucas Caballero"></ButtonText>
-          </Grid>
+
+          <ButtonLevel
+            variant="text"
+            href="https://github.com/GradacMarcos"
+            title=" Gradac Marcos "
+          />
+
+          <ButtonLevel
+            href="https://github.com/rojomaldit"
+            variant="text"
+            title="Lucas Caballero"
+          />
         </Grid>
       </Grid>
     </Grid>

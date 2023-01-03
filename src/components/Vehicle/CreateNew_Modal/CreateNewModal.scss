@@ -1,0 +1,15 @@
+@import "styles/variables.scss";
+
+div.CreateNew_Modal_Form {
+  text-align: center;
+  width: 100%;
+  text-align: initial;
+
+  h4.form-input-title {
+    color: $primary-color;
+    margin-bottom: 2rem;
+  }
+  div.form_input {
+    margin-top: 1rem;
+  }
+}

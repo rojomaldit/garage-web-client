@@ -11,7 +11,7 @@ export default function BasicMenu(props: Props) {
   return (
     <Grid container>
       <Grid className="BasicMenu" item xs={2}>
-        <Grid className="logo">
+        <Grid item xs={12} className="logo">
           <img className="img-logo" src="images/logo.png" alt="" />
         </Grid>
         <Grid className="menu-item">
@@ -23,7 +23,7 @@ export default function BasicMenu(props: Props) {
             Inicio
           </Button>
         </Grid>
-        
+
         <Grid className="menu-item">
           <Button href="/vehicles" className="button-cars" variant="contained">
             Vehiculos
@@ -36,6 +36,15 @@ export default function BasicMenu(props: Props) {
             variant="contained"
           >
             Cocheras
+          </Button>
+        </Grid>
+        <Grid className="menu-item">
+          <Button
+            href="/rents"
+            className="button-garages"
+            variant="contained"
+          >
+            Rentas
           </Button>
         </Grid>
       </Grid>
