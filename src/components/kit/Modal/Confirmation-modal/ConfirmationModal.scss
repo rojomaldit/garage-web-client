@@ -8,12 +8,14 @@ div.confirmation-modal {
   border: 2px solid black;
   padding: 3rem;
   border-radius: 10px;
-  text-align: center;
 
   div.box-modal {
+    width: 100%;
+    text-align: center;
     div.box-modal-footer {
       hr.divider {
         margin: 1.5rem 0;
+
       }
     }
     div.description {
