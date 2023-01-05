@@ -1,17 +1,44 @@
 import { Grid } from "@mui/material";
+import { RentHistory } from "../../../services/dashboard";
 import CanvasJSReact from "./canvasjs.react";
 import "./DashboardGraphic.scss";
 
+interface Props {
+  historyData: RentHistory;
+}
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
-export default function DashboardGraphic() {
+export default function DashboardGraphic(props: Props) {
+
+  // Esta funcion se encarga de agrupar todas las horas en un solo objeto
+  // si hay 10 elementos a las 12 horas, entonces sumo los 10 elementos y queda 1 solo elemento a las 12hs
+  const groupByType = (
+    data: {
+      amountCollected: number;
+      collectedOn: number;
+      rentId: number;
+    }[]
+  ) => {
+    const r: { [hour: number]: number } = {};
+
+    for (let i = 0; i < data.length; i++) {
+      const e = data[i];
+      if (!r[e.collectedOn]) r[e.collectedOn] = e.amountCollected;
+      else r[e.collectedOn] += e.amountCollected;
+    }
+
+    return r;
+  };
+  
+  const historyGrouped = groupByType(props.historyData.history)
+
   const options = {
     animationEnabled: true,
     title: {
-      text: "ASDASDASDAD",
+      text: "GRAFICO ULTIMOS COBROS",
     },
     axisY: {
       title: "234567865",
-      suffix: " kWh",
+      suffix: "$",
     },
     data: [
       {
@@ -20,21 +47,18 @@ export default function DashboardGraphic() {
         yValueFormatString: "#,##0.## bn kW⋅h",
         showInLegend: true,
         legendText: "kWh = one kilowatt hour",
-        dataPoints: [
-          { x: new Date(2008, 0), y: 70.735 },
-          { x: new Date(2009, 0), y: 74.102 },
-          { x: new Date(2010, 0), y: 72.569 },
-          { x: new Date(2011, 0), y: 72.743 },
-          { x: new Date(2012, 0), y: 72.381 },
-          { x: new Date(2013, 0), y: 71.406 },
-          { x: new Date(2014, 0), y: 73.163 },
-          { x: new Date(2015, 0), y: 74.27 },
-          { x: new Date(2016, 0), y: 72.525 },
-          { x: new Date(2017, 0), y: 73.121 },
-        ],
+        dataPoints: Object.keys(historyGrouped).map((e) => {
+          const key = parseInt(e)
+          return {
+            x: key,
+            y: historyGrouped[key],
+          }
+        }),
       },
     ],
   };
+
+
   return (
     <Grid className="Dashboard-Graphic" container>
       <CanvasJSChart

@@ -5,15 +5,35 @@ import "./Dashboard.scss";
 import DashboardGraphic from "../../components/Dashboard/Graphic";
 import ButtonLevel from "../../components/kit/Buttons";
 import { Garage, getAllGarage } from "../../services/garages";
+import { getAllRentsHistory, RentHistory } from "../../services/dashboard";
+
+const defaultRentHistory = {
+  type: "Hourly",
+  totalToCollect: 0,
+  history: [],
+};
 
 export default function Dashboard() {
   const [placeGarageData, setPlaceGarageData] = useState<Garage[]>([]);
+  const [historyData, setHistoryData] =
+    useState<RentHistory>(defaultRentHistory);
+
   const handlePlaceGarage = () => {
     (async () => {
       const data = await getAllGarage();
       setPlaceGarageData(data);
     })();
   };
+
+  const handleRentsHistory = () => {
+    (async () => {
+      const data = await getAllRentsHistory(historyData.type);
+      if (data !== undefined) {
+        setHistoryData(data);
+      }
+    })();
+  };
+  useEffect(handleRentsHistory, []);
 
   const [totalToCollectData, setTotalToCollectData] =
     useState<TotalToCollectData>();
@@ -35,7 +55,7 @@ export default function Dashboard() {
         <Typography variant="h3">Inicio</Typography>
       </Grid>
       <Grid className="graphic">
-        <DashboardGraphic />
+        <DashboardGraphic historyData={historyData}  />
       </Grid>
       <Grid className="data-garage" container>
         <Grid item xs={4}>

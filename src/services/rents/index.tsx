@@ -101,7 +101,7 @@ export async function getTotalToCollect() {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    const response = await axios.get(base + "/rent/total- llect", {
+    const response = await axios.get(base + "/rent/total-to-collect", {
       headers,
     });
     return response.data;

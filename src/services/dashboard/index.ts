@@ -8,15 +8,15 @@ export type RentHistory = {
     amountCollected: number;
     collectedOn: number;
     rentId: number;
-  };
+  }[];
 };
 
-export async function getAllRentsHistory() {
+export async function getAllRentsHistory(type: string) {
   try {
     const headers = {
       Authorization: `Bearer ${token}`,
     };
-    const response = await axios.get(base + "/rent-history", { headers });
+    const response = await axios.get(base + "/rent-history?type=" + type, { headers });
     return response.data;
   } catch (e) {
     console.warn(e);
