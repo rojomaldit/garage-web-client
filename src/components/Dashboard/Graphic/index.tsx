@@ -38,7 +38,7 @@ export default function DashboardGraphic() {
   return (
     <Grid className="Dashboard-Graphic" container>
       <CanvasJSChart
-        containerProps={{height:"100", width: "100%", }}
+        containerProps={{ height: "100", width: "100%" }}
         options={options}
         /* onRef={ref => this.chart = ref} */
       />

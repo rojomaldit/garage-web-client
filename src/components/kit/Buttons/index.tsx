@@ -37,7 +37,6 @@ export default function ButtonLevel(props: Props) {
           disabled={props.disabled}
           onClick={onClick}
           href={!href ? "" : href}
-          target="_blank"
           size={size}
           color={color}
           variant="text"
