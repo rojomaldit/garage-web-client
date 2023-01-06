@@ -45,7 +45,7 @@ export default function Garage() {
         <Routes>
           <Route path="/" element={applyMenu(<Dashboard />)} />
           <Route path="/dashboard" element={applyMenu(<Dashboard />)} />
-          <Route path="/vehicles" element={applyMenu(<Vehicles />)} />
+          <Route path="/vehicle" element={applyMenu(<Vehicles />)} />
           <Route path="/garages" element={applyMenu(<Garages />)} />
           <Route path="/rents" element={applyMenu(<Rents />)} />
         </Routes>

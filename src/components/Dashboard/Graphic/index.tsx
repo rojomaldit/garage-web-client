@@ -19,11 +19,12 @@ export default function DashboardGraphic(props: Props) {
     },
     data: [
       {
+        color: "#a543e1 ",
         type: "splineArea",
         xValueFormatString: "$",
         yValueFormatString: "#,##0.##",
         showInLegend: true,
-        legendText: "kWh = one kilowatt hour",
+        legendText: "Hora del dia",
         dataPoints: props.historyData.history.map((e) => ({
           x: e.collectedOn,
           y: e.amountCollected,
