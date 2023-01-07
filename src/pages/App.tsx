@@ -13,7 +13,7 @@ export default function Garage() {
   const [token, setToken] = useState<string>(
     localStorage.getItem("access_token") || ""
   );
-console.log(token)
+
   useEffect(() => {
     const expiration = localStorage.getItem("token_expiration");
 

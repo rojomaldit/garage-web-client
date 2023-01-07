@@ -1,34 +1,42 @@
 import { Grid, Typography } from "@mui/material";
 import { useState } from "react";
-import { VehicleDTO, postNewVehicle } from "../../../services/vehicle";
+import {
+  UpdateVehicleDTO,
+  updateVehicle,
+  Vehicle,
+} from "../../../services/vehicle";
 import SelectInput from "../../kit/Inputs/Select";
 import TextInput from "../../kit/Inputs/Text";
 import BasicModal from "../../kit/Modal";
-import "./CreateNewModal.scss";
+import "./UpdateVehicleModal.scss";
 
 interface Props {
+  vehicle: Vehicle;
   title: string;
   setAlertStatus: React.Dispatch<
     React.SetStateAction<"noProcess" | "success" | "error">
   >;
-  setOpenModal: React.Dispatch<React.SetStateAction<boolean>>;
+  setOpenModal: React.Dispatch<React.SetStateAction<Vehicle | null>>;
   openModal: boolean;
   updatePage: () => void;
 }
 
-const defaultVehicleDTO = {
-  licensePlate: "",
-  vehicleType: "",
-  phoneNumber: "",
-  notes: "",
-};
+export default function UpdateVehicleModal(props: Props) {
+  const [updateVehicleDTO, setUpdateVehicleDTO] = useState<UpdateVehicleDTO>({
+    vehicleId: props.vehicle?.id,
+    name: null,
+    email: null,
+    licensePlate: props.vehicle?.licensePlate,
+    vehicleType: props.vehicle?.vehicleType,
+    phoneNumber: props.vehicle?.phoneNumber,
+    deleteAfterRent: null,
+    address: null,
+    notes: props.vehicle?.notes,
+  });
 
-export default function CreateNew_Modal(props: Props) {
-  const [vehicleDTO, setVehicleDTO] = useState<VehicleDTO>(defaultVehicleDTO);
-
-  const handlePostNewVehicle = () => {
+  const handleUpdateVehicle = () => {
     (async () => {
-      let response = await postNewVehicle(vehicleDTO);
+      let response = await updateVehicle(updateVehicleDTO);
 
       if (response !== undefined) {
         props.updatePage();
@@ -41,32 +49,35 @@ export default function CreateNew_Modal(props: Props) {
   };
 
   const disableVehicleDTO = () => {
-    if (vehicleDTO.licensePlate === "" || vehicleDTO.vehicleType === "")
+    if (
+      updateVehicleDTO.licensePlate === "" ||
+      updateVehicleDTO.vehicleType === ""
+    )
       return true;
 
     return false;
   };
   const onCloseModal = () => {
-    props.setOpenModal(false);
-    setVehicleDTO(defaultVehicleDTO);
+    props.setOpenModal(null);
   };
 
   return (
-    <Grid className="CreateNew_Modal">
+    <Grid className="UpdateVehicleModal">
       <BasicModal
         disabled={disableVehicleDTO()}
-        saveOnclick={handlePostNewVehicle}
+        saveOnclick={handleUpdateVehicle}
         closeModal={onCloseModal}
         open={props.openModal}
       >
-        <Grid className="CreateNew_Modal_Form">
+        <Grid className="UpdateVehicleModal_Form">
           <Typography className="form-input-title" variant="h4">
             {props.title}
           </Typography>
           <Grid className="form_input">
             <TextInput
+              value={updateVehicleDTO.licensePlate as string}
               onChange={(licensePlate) =>
-                setVehicleDTO((prevState) => ({
+                setUpdateVehicleDTO((prevState) => ({
                   ...prevState,
                   licensePlate,
                 }))
@@ -76,8 +87,9 @@ export default function CreateNew_Modal(props: Props) {
           </Grid>
           <Grid className="form_input">
             <SelectInput
+              itemSelected={updateVehicleDTO.vehicleType as string}
               onChange={(vehicleType) =>
-                setVehicleDTO((prevState) => ({
+                setUpdateVehicleDTO((prevState) => ({
                   ...prevState,
                   vehicleType: vehicleType as string,
                 }))
@@ -109,8 +121,9 @@ export default function CreateNew_Modal(props: Props) {
           </Grid>
           <Grid className="form_input">
             <TextInput
+              value={updateVehicleDTO.phoneNumber as string}
               onChange={(phoneNumber) =>
-                setVehicleDTO((prevState) => ({
+                setUpdateVehicleDTO((prevState) => ({
                   ...prevState,
                   phoneNumber,
                 }))
@@ -120,8 +133,9 @@ export default function CreateNew_Modal(props: Props) {
           </Grid>
           <Grid className="form_input">
             <TextInput
+              value={updateVehicleDTO.notes as string}
               onChange={(notes) =>
-                setVehicleDTO((prevState) => ({
+                setUpdateVehicleDTO((prevState) => ({
                   ...prevState,
                   notes,
                 }))
