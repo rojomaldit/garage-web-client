@@ -13,7 +13,7 @@ export default function Garage() {
   const [token, setToken] = useState<string>(
     localStorage.getItem("access_token") || ""
   );
-
+console.log(token)
   useEffect(() => {
     const expiration = localStorage.getItem("token_expiration");
 
@@ -45,7 +45,7 @@ export default function Garage() {
         <Routes>
           <Route path="/" element={applyMenu(<Dashboard />)} />
           <Route path="/dashboard" element={applyMenu(<Dashboard />)} />
-          <Route path="/vehicle" element={applyMenu(<Vehicles />)} />
+          <Route path="/vehicles" element={applyMenu(<Vehicles />)} />
           <Route path="/garages" element={applyMenu(<Garages />)} />
           <Route path="/rents" element={applyMenu(<Rents />)} />
         </Routes>

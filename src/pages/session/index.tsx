@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Grid, Typography } from "@mui/material";
 import "./Session.scss";
 import TextInput from "../../components/kit/Inputs/Text";
@@ -23,13 +23,14 @@ export default function Session(props: Props) {
         return;
       }
 
-      props.setToken(token.access_token);
       localStorage.setItem("access_token", token.access_token);
 
       // 8 hours to expirate token
       const expiration = new Date();
       expiration.setHours(expiration.getHours() + 8);
       localStorage.setItem("token_expiration", expiration.toString());
+
+      props.setToken(token.access_token);
     })();
   };
 
