@@ -8,11 +8,15 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import "./Garages.scss";
 import ConfirmationModal from "../../components/kit/Modal/Confirmation-modal";
 import Alerts from "../../components/kit/Alerts";
+import ModeEditIcon from "@mui/icons-material/ModeEdit";
+import UpdateGarageModal from "../../components/Garage/UpdateGarageModal";
 
 export default function Garages() {
   const [garageData, setGarageData] = useState<Garage[]>([]);
   const [openModal, setOpenModal] = useState(false);
   const [garageToDeleteModal, setGarageToDeleteModal] = useState(0);
+  const [garageToUpdate, setGarageToUpdate] = useState<Garage | null>(null);
+
   const [alertStatus, setAlertStatus] = useState<
     "noProcess" | "success" | "error"
   >("noProcess");
@@ -20,6 +24,9 @@ export default function Garages() {
   const [alertStatusConfirmation, setAlertStatusConfirmation] = useState<
     "noProcess" | "success" | "error"
   >("noProcess");
+  const [alertEdit, setAlertEdit] = useState<"noProcess" | "success" | "error">(
+    "noProcess"
+  );
 
   const handleGarageData = () => {
     (async () => {
@@ -60,8 +67,16 @@ export default function Garages() {
               startIcon: <DeleteIcon />,
               label: "eliminar",
               onClick: (rowIndex: number) => {
-                const vehicle = garageData[rowIndex];
-                setGarageToDeleteModal(vehicle.id);
+                const garage = garageData[rowIndex];
+                setGarageToDeleteModal(garage.id);
+              },
+            },
+            {
+              startIcon: <ModeEditIcon />,
+              label: "Editar",
+              onClick: (rowIndex: number) => {
+                const garage = garageData[rowIndex];
+                setGarageToUpdate(garage);
               },
             },
           ]}
@@ -94,6 +109,17 @@ export default function Garages() {
           color: "error",
         }}
       />
+
+      {!!garageToUpdate && (
+        <UpdateGarageModal
+          garage={garageToUpdate}
+          title="Editar datos del garage"
+          setAlertStatus={setAlertEdit}
+          updatePage={handleGarageData}
+          openModal={!garageToUpdate ? false : true}
+          setOpenModal={setGarageToUpdate}
+        />
+      )}
       {alertStatus !== "noProcess" && (
         <Alerts
           setAlertStatus={setAlertStatus}
@@ -113,6 +139,17 @@ export default function Garages() {
             alertStatusConfirmation === "success"
               ? "La cochera se a eliminado con exíto"
               : "Ocurrío un error al eliminar la cochera"
+          }
+        />
+      )}
+      {alertEdit !== "noProcess" && (
+        <Alerts
+          setAlertStatus={setAlertEdit}
+          severity={alertEdit}
+          message={
+            alertEdit === "success"
+              ? "La cochera se a editado con exíto"
+              : "Ocurrío un error al editar la cochera"
           }
         />
       )}
