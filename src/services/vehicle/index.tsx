@@ -52,3 +52,27 @@ export async function deleteVehicle(id: number) {
     console.warn(e);
   }
 }
+
+export type UpdateVehicleDTO = {
+  vehicleId: number;
+  name: string | null;
+  email: string | null;
+  licensePlate: string | null;
+  vehicleType: string | null;
+  phoneNumber: string | null;
+  deleteAfterRent: boolean | null;
+  address: string | null;
+  notes: string | null;
+};
+
+export async function updateVehicle(dto: UpdateVehicleDTO) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.patch(base + "/vehicle", dto, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}

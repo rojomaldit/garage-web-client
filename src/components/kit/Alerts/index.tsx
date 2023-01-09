@@ -1,9 +1,9 @@
 import { Alert, AlertColor, Grid } from "@mui/material";
 import { useEffect, useState } from "react";
 import "./Alert.scss";
-
+export type AlertType = "noProcess" | "success" | "error";
 interface Props {
-  setAlertStatus: React.Dispatch<React.SetStateAction<"success" | "error" | "noProcess">>  
+  setAlertStatus: React.Dispatch<React.SetStateAction<AlertType>>;
   severity: AlertColor;
   message: string;
 }
@@ -14,7 +14,7 @@ export default function Alerts(props: Props) {
   useEffect(() => {
     const timeId = setTimeout(() => {
       setShow(false);
-      props.setAlertStatus("noProcess")
+      props.setAlertStatus("noProcess");
     }, 4000);
 
     return () => {

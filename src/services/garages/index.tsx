@@ -46,3 +46,20 @@ export async function deleteGarage(id: number) {
     console.warn(e);
   }
 }
+
+export type UpdateGarageDTO = {
+  garageId: number,
+  placeId: string;
+};
+
+export async function updateGarage(dto: UpdateGarageDTO) {
+  try {
+    const headers = {
+      Authorization: `Bearer ${token}`,
+    };
+    const response = await axios.patch(base + "/place-garage", dto, { headers });
+    return response.data;
+  } catch (e) {
+    console.warn(e);
+  }
+}

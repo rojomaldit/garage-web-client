@@ -1,44 +1,99 @@
 import { Grid } from "@mui/material";
+import { useEffect, useState } from "react";
+import { getAllRentsHistory, RentHistory } from "../../../services/dashboard";
+import SelectInput from "../../kit/Inputs/Select";
 import CanvasJSReact from "./canvasjs.react";
 import "./DashboardGraphic.scss";
-
+import { rentTypeToES } from "../../../services/rents";
 var CanvasJSChart = CanvasJSReact.CanvasJSChart;
+
+const defaultRentHistory = {
+  type: "Hourly",
+  totalToCollect: 0,
+  history: [],
+};
 export default function DashboardGraphic() {
+  const [historyData, setHistoryData] =
+    useState<RentHistory>(defaultRentHistory);
+  const [selectButton, setSelectButton] = useState("Hourly");
+
   const options = {
     animationEnabled: true,
+
     title: {
-      text: "ASDASDASDAD",
+      text:
+        historyData.history.length > 3
+          ? "GRAFICOS ULTIMOS COBROS " +
+            rentTypeToES(selectButton).toUpperCase()
+          : "NO HAY COBROS  " + rentTypeToES(selectButton).toUpperCase(),
     },
     axisY: {
-      title: "234567865",
-      suffix: " kWh",
+      title:
+        historyData.history.length > 3
+          ? "COBRO  " + rentTypeToES(selectButton).toUpperCase()
+          : "NO HAY COBROS  " + rentTypeToES(selectButton).toUpperCase(),
+      suffix: "$",
     },
     data: [
       {
+        color: "#a543e1 ",
         type: "splineArea",
-        xValueFormatString: "YYYY",
-        yValueFormatString: "#,##0.## bn kW⋅h",
+        xValueFormatString: "$",
+        yValueFormatString: "#,##0.##",
         showInLegend: true,
-        legendText: "kWh = one kilowatt hour",
-        dataPoints: [
-          { x: new Date(2008, 0), y: 70.735 },
-          { x: new Date(2009, 0), y: 74.102 },
-          { x: new Date(2010, 0), y: 72.569 },
-          { x: new Date(2011, 0), y: 72.743 },
-          { x: new Date(2012, 0), y: 72.381 },
-          { x: new Date(2013, 0), y: 71.406 },
-          { x: new Date(2014, 0), y: 73.163 },
-          { x: new Date(2015, 0), y: 74.27 },
-          { x: new Date(2016, 0), y: 72.525 },
-          { x: new Date(2017, 0), y: 73.121 },
-        ],
+        legendText: "Hora del dia",
+        
+        dataPoints: historyData.history.length < 3 ? [] : historyData.history.map((e) => ({
+          x: e.collectedOn,
+          y: e.amountCollected,
+        })) 
       },
     ],
   };
+
+  const handleRentsHistory = () => {
+    (async () => {
+      const data = await getAllRentsHistory(selectButton);
+      if (data !== undefined) {
+        setHistoryData(data);
+      }
+    })();
+  };
+  useEffect(handleRentsHistory, [selectButton]);
   return (
     <Grid className="Dashboard-Graphic" container>
+      <Grid className="button-select">
+        <SelectInput
+          items={[
+            {
+              value: "Hourly",
+              label: "Hora",
+            },
+            {
+              value: "Daily",
+              label: "Dia",
+            },
+            {
+              value: "Weekly",
+              label: "Semanal",
+            },
+            {
+              value: "Monthly",
+              label: "Mensual",
+            },
+            {
+              value: "Yearly",
+              label: "Anual",
+            },
+          ]}
+          itemSelected={selectButton}
+          onChange={(value) => {
+            setSelectButton(value as string);
+          }}
+        />
+      </Grid>
       <CanvasJSChart
-        containerProps={{height:"100", width: "100%", }}
+        containerProps={{ height: "100", width: "100%" }}
         options={options}
         /* onRef={ref => this.chart = ref} */
       />

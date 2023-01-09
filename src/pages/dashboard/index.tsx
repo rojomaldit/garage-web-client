@@ -5,9 +5,13 @@ import "./Dashboard.scss";
 import DashboardGraphic from "../../components/Dashboard/Graphic";
 import ButtonLevel from "../../components/kit/Buttons";
 import { Garage, getAllGarage } from "../../services/garages";
+import { getAllRentsHistory, RentHistory } from "../../services/dashboard";
+
+
 
 export default function Dashboard() {
   const [placeGarageData, setPlaceGarageData] = useState<Garage[]>([]);
+
   const handlePlaceGarage = () => {
     (async () => {
       const data = await getAllGarage();
@@ -65,7 +69,7 @@ export default function Dashboard() {
         <Grid item xs={4}>
           <ButtonLevel
             variant="text"
-            href="/vehicle"
+            href="/vehicles"
             title="Pendiente de Cobro"
           />
           <Typography color={"green"} variant="h4">
